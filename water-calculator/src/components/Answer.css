@@ -1,0 +1,29 @@
+@import url('../index.css');
+
+.buttons {
+    width: calc(var(--scale) * 1200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 18.6%;
+}
+
+.next {
+    background-color: #0E4B9A;
+    color: white;
+    width: calc(var(--scale) * 177);
+    height: calc(var(--scale) * 71); 
+    border-radius: calc(var(--scale) * 30);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: calc(var(--scale) * 32); 
+    text-align: center; 
+    border: none; 
+    cursor: pointer; 
+    transition: opacity 0.3s ease;
+}
+  
+.next:hover {
+    opacity: 0.7;
+}

@@ -1,0 +1,13 @@
+@import url('index.css');
+
+body {
+    background-color: #E1F1FE;
+}
+
+.logo {
+    width: calc(var(--scale) * 207);
+    height: calc(var(--scale) * 128);
+    position: fixed; 
+    top: calc(var(--scale) * 20);
+    right: calc(var(--scale) * 20);
+}

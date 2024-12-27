@@ -1,0 +1,35 @@
+@import url('../index.css');
+
+.icon {
+    width: calc(var(--scale) * 45);
+    margin-right: calc(var(--scale) * 27);
+}
+
+.title {
+    font-size: calc(var(--scale) * 48);
+    color: #0E4B9A;
+}
+
+.icon-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.line {
+    margin-top: calc(var(--scale) * -35);
+    width: calc(var(--scale) * 1001);
+}
+
+.title-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(var(--scale) * 70);
+}
+
+.question {
+    font-size: calc(var(--scale) * 54);
+    width: calc(var(--scale) * 1456);
+    text-align: center;
+    overflow-wrap: break-word;
+}
