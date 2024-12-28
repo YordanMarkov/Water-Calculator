@@ -7,6 +7,7 @@
     left: calc(var(--scale) * 0);
     top: calc(var(--scale) * 0);
     background-color: #0E4B9A;
+    overflow: visible;
 }
 
 .sidebar-title {
@@ -38,4 +39,28 @@
     filter: invert(1) brightness(100) contrast(100) grayscale(100%);
     width: calc(var(--scale) * 45);
     margin-bottom: calc(var(--scale) * 30);
+    cursor: pointer;
+}
+
+.circles {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: calc(var(--scale) * 91);
+    margin-left: calc(var(--scale) * -23);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.circles.expanded {
+    max-height: calc(var(--scale) * 300);
+    opacity: 1;
+}
+
+.circle {
+    width: calc(var(--scale) * 25);
+    margin-bottom: calc(var(--scale) * 30);
+    cursor: pointer;
 }
