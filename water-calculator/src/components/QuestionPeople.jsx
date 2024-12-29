@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
-import './Question1.css';
+import './QuestionPeople.css';
 
 function Question1() {
   const [value, setValue] = useState(1);

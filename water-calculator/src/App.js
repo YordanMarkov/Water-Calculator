@@ -1,6 +1,7 @@
 import './App.css';
 import Title from './components/Title';
-import Question1 from './components/Question1';
+import QuestionPeople from './components/QuestionPeople';
+import QuestionBath from './components/QuestionBath';
 import QuestionPicture from './components/QuestionPicture';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
@@ -18,7 +19,7 @@ function App() {
         lineColor={require("./images/lines/blue.svg").default} 
         questionText="С колко души споделяте вашия дом?" 
       />
-      <Question1/>
+      <QuestionPeople/>
       <Answer 
         isTherePrev={false} 
         isThereNext={true} 
@@ -34,7 +35,7 @@ function App() {
         questionText="Колко време ви отнема да си вземете душ?" 
       />
       <QuestionPicture 
-        src={require("../images/all/shower.png")} 
+        src={require("./images/all/shower.png")} 
         alt="Showering" 
       />
       <Answer 
@@ -62,6 +63,19 @@ function App() {
       /> */}
 
       {/* Question 4 */}
+      <Sidebar/>
+      <Title 
+        iconPath={require("./images/icons/bath.svg").default} 
+        titleText="Вана" 
+        lineColor={require("./images/lines/blue.svg").default} 
+        questionText="Ползвате ли вана? Ако да, колко често?" 
+      />
+      <QuestionBath/>
+      <Answer 
+        isTherePrev={true} 
+        isThereNext={true} 
+        buttonTitles={[]} 
+      />
 
       {/* Question 5 */}
       {/* <Sidebar/>
@@ -160,12 +174,12 @@ function App() {
       {/* Question 11 */}
       
       {/* Question 12 */}
-      <Sidebar/>
+      {/* <Sidebar/>
       <Title 
         iconPath={require("./images/icons/graywater.svg").default} 
         titleText="Сиво-водна система" 
         lineColor={require("./images/lines/blue.svg").default} 
-        questionText="Имате ли вкъщи инсталирана система за повторна употреба на ползваната от крановете вода??" 
+        questionText="Имате ли вкъщи инсталирана система за повторна употреба на ползваната от крановете вода?" 
       />
       <QuestionPicture 
         src={require("./images/all/graywater.png")} 
@@ -177,7 +191,7 @@ function App() {
         isTherePrev={true} 
         isThereNext={false} 
         buttonTitles={['Да', 'Не']} 
-      />
+      /> */}
     </div>
   );
 }
