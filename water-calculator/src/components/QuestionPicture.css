@@ -1,0 +1,8 @@
+@import url('../index.css');
+
+.questionPicture {
+    width: calc(var(--scale) * 360);
+    margin-left: 42%;
+    justify-content: center;
+    margin-bottom: calc(var(--scale) * 18);
+}

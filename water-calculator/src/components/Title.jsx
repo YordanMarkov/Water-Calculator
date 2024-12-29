@@ -1,14 +1,15 @@
 import './Title.css';
+import React from 'react';
 
-function Title() {
+function Title({ iconPath, titleText, lineColor, questionText }) {
   return (
     <div className="title-line">
         <div className="icon-title">
-            <img src={require("../images/icons/home.svg").default} className="icon" alt="home"/>
-            <p className="title">У дома</p>
+            <img src={iconPath} className="icon" alt="icon" />
+            <p className="title">{titleText}</p>
         </div>
-        <img src={require("../images/lines/blue.svg").default} className="line"  alt="line"/>
-        <p className="question">С колко души споделяте вашия дом?</p>
+        <img src={lineColor} className="line" alt="line" />
+        <p className="question">{questionText}</p>
     </div>
   );
 }
