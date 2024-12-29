@@ -3,6 +3,7 @@ import Title from './components/Title';
 import QuestionPeople from './components/QuestionPeople';
 import QuestionBath from './components/QuestionBath';
 import QuestionPicture from './components/QuestionPicture';
+import QuestionAdvancedSelection from './components/QuestionAdvancedSelection';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 
@@ -12,7 +13,7 @@ function App() {
     <div>
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo"/>
       {/* Question 1 */}
-      {/* <Sidebar/>
+      <Sidebar/>
       <Title 
         iconPath={require("./images/icons/home.svg").default} 
         titleText="У дома" 
@@ -24,7 +25,7 @@ function App() {
         isTherePrev={false} 
         isThereNext={true} 
         buttonTitles={[]} 
-      /> */}
+      />
 
       {/* Question 2 */}
       {/* <Sidebar/>
@@ -63,7 +64,7 @@ function App() {
       /> */}
 
       {/* Question 4 */}
-      <Sidebar/>
+      {/* <Sidebar/>
       <Title 
         iconPath={require("./images/icons/bath.svg").default} 
         titleText="Вана" 
@@ -75,7 +76,7 @@ function App() {
         isTherePrev={true} 
         isThereNext={true} 
         buttonTitles={[]} 
-      />
+      /> */}
 
       {/* Question 5 */}
       {/* <Sidebar/>
@@ -170,9 +171,53 @@ function App() {
       /> */}
 
       {/* Question 10 */}
+      {/* <Sidebar/>
+      <Title 
+        iconPath={require("./images/icons/dish.svg").default} 
+        titleText="Съдове" 
+        lineColor={require("./images/lines/blue.svg").default} 
+        questionText="Как си миете съдовете?" 
+      />
+      <QuestionAdvancedSelection
+        options={[
+          "Обикновена съдомиялна",
+          "Енерго/Водоефективна съдомиялна",
+          "На ръка",
+          "Хвърлям ги / Не ям вкъщи",
+        ]}
+        questionCount={4}
+        bigImageSrc={require("./images/all/dish.png")} 
+      />
+      <Answer 
+        isTherePrev={true} 
+        isThereNext={true} 
+        buttonTitles={[]} 
+      /> */}
 
       {/* Question 11 */}
-      
+      {/* <Sidebar/>
+      <Title 
+        iconPath={require("./images/icons/washingmachine.svg").default} 
+        titleText="Пералня" 
+        lineColor={require("./images/lines/blue.svg").default} 
+        questionText="Как перете?" 
+      />
+      <QuestionAdvancedSelection
+        options={[
+          "Обикновена пералня",
+          "Енерго/Водоефективна пералня",
+          "На ръка",
+          "Обществена пералня / Друго",
+        ]}
+        questionCount={4}
+        bigImageSrc={require("./images/all/washingmachine.png")} 
+      />
+      <Answer 
+        isTherePrev={true} 
+        isThereNext={true} 
+        buttonTitles={[]} 
+      /> */}
+
       {/* Question 12 */}
       {/* <Sidebar/>
       <Title 

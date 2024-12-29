@@ -1,0 +1,102 @@
+.picture-selectable-questions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: calc(var(--scale) * 20);
+    margin-top: calc(var(--scale) * -60);
+    margin-bottom: calc(var(--scale) * -50);
+}
+
+.big-img {
+    width: calc(var(--scale) * 555);
+}
+
+.question-row {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--scale) * 15);
+    width: calc(var(--scale) * 900);
+    position: relative;
+    min-height: calc(var(--scale) * 100);
+}
+
+
+.selection {
+    flex: 1;
+    height: calc(var(--scale) * 71);
+    background-color: #0E4B9A;
+    border-radius: calc(var(--scale) * 30);
+    font-size: calc(var(--scale) * 32);
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: calc(var(--scale) * 32);
+    min-width: calc(var(--scale) * 320);
+    transition: opacity 0.3s ease;
+    cursor: pointer; 
+}
+
+.selection:hover {
+    opacity: 0.7;
+}
+
+.selection.selected {
+    background-color: #0E919A;
+    font-size: calc(var(--scale) * 20);
+    margin-bottom: calc(var(--scale) * 0);
+}
+
+.control-details {
+    display: flex;
+    align-items: center; 
+    gap: calc(var(--scale) * 10);
+    min-width: calc(var(--scale) * 320); 
+}
+
+.operational-sign {
+    width: calc(var(--scale) * 40);
+    cursor: pointer;
+    flex-shrink: 0; 
+}
+
+.operational-sign.plus {
+    margin-left: calc(var(--scale) * 32);
+}
+
+.operational-sign.minus {
+    margin-right: calc(var(--scale) * 32);
+}
+
+.operational-sign.remove {
+    margin-right: calc(var(--scale) * 10);
+}
+
+.operational-sign.disabled {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.operational-sign.remove.red {
+    background: none;
+}
+
+.count, .period {
+    font-size: calc(var(--scale) * 28);
+    margin: 0 calc(var(--scale) * 10);
+    text-align: center;
+    min-width: calc(var(--scale) * 100); 
+}
+
+.period {
+    width: calc(var(--scale) * 120); 
+}
+
+.period-label {
+    font-size: calc(var(--scale) * 24);
+    margin-right: calc(var(--scale) * 10); 
+    margin-left: calc(var(--scale) * 10);
+    min-width: calc(var(--scale) * 140);
+}
