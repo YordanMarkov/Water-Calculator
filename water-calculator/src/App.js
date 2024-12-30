@@ -16,7 +16,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/home.svg").default}
             titleText="У дома"
@@ -36,7 +39,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Душ"
@@ -59,7 +65,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Душ"
@@ -82,7 +91,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Вана"
@@ -102,7 +114,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
@@ -125,7 +140,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
@@ -148,7 +166,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/toilet.svg").default}
             titleText="Тоалетна"
@@ -173,7 +194,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
@@ -196,7 +220,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
@@ -219,7 +246,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/dish.svg").default}
             titleText="Съдове"
@@ -248,7 +278,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/washingmachine.svg").default}
             titleText="Пералня"
@@ -277,7 +310,10 @@ function App() {
     {
       component: (
         <>
-          <Sidebar />
+          <Sidebar
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
           <Title
             iconPath={require("./images/icons/graywater.svg").default}
             titleText="Сиво-водна система"
