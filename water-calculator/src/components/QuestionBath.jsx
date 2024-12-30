@@ -43,7 +43,7 @@ function QuestionBath() {
             onClick={() => handleTimesChange("decrease")}
             style={times === 0 ? getButtonStyle(true) : {}}
             />
-            <p className="times">{times}</p>
+            <p className="times-bath">{times}</p>
             <img
             className="operational-sign"
             src={require("../images/all/plus.svg").default}
@@ -60,7 +60,7 @@ function QuestionBath() {
             onClick={() => handlePeriodChange("decrease")}
             style={period === "Дневно" ? getButtonStyle(true) : {}}
             />
-            <p className="period">{period}</p>
+            <p className="period-bath">{period}</p>
             <img
             className="operational-sign"
             src={require("../images/all/plus.svg").default}

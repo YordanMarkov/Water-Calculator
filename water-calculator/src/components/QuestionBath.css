@@ -24,7 +24,7 @@
     opacity: 0.7;
 }
 
-.times, .period {
+.times-bath, .period-bath {
     font-size: calc(var(--scale) * 48);
     text-align: center;
 }
