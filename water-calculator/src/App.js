@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Title from './components/Title';
 import QuestionPeople from './components/QuestionPeople';
 import QuestionBath from './components/QuestionBath';
 import QuestionPicture from './components/QuestionPicture';
 import QuestionAdvancedSelection from './components/QuestionAdvancedSelection';
+import QuestionGarden from './components/QuestionGarden';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
+import SidebarGreen from './components/SidebarGreen';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -334,6 +336,89 @@ function App() {
         buttonTitles: ['Да', 'Не'],
       },
     },
+    // Outdoor Water
+    // Question 13
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/sprinkler.svg").default}
+            titleText="Морава и градина"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Поливате ли си вашата морава или градина?"
+            isGreen={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/sprinkler.png")}
+            alt="Sprinkler"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не'],
+        isGreen: true,
+      },
+    },
+
+    // Question 14
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/sprinkler.svg").default}
+            titleText="Морава и градина"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Каква площ поливате?"
+            isGreen={true}
+          />
+          <QuestionGarden/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isGreen: true,
+      },
+    },
+    // Question 15
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/sprinkler.svg").default}
+            titleText="Морава и градина"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Озеленявате ли с растения, които изискват малко или никаква вода?"
+            isGreen={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/cactus.png")}
+            alt="Sprinkler"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не'],
+        isGreen: true,
+      },
+    },
   ];  
 
   const goToNextQuestion = () => {
@@ -356,6 +441,18 @@ function App() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
+
+  useEffect(() => {
+    if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {
+      document.body.style.backgroundColor = '#E1F1FE';
+    } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 18) {
+      document.body.style.backgroundColor = '#E1FEED';
+    }
+
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, [currentQuestionIndex]);
 
   return (
     <div>

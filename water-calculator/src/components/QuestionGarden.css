@@ -1,0 +1,29 @@
+@import url('../index.css');
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(var(--scale) * 20);
+}
+
+.sprinkler {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: calc(var(--scale) * 5); 
+    width: calc(var(--scale) * 220); 
+    overflow-y: auto;
+    margin-bottom: calc(var(--scale) * 50); 
+    margin-top: calc(var(--scale) * -20); 
+}
+
+
+.slider {
+    margin-top: calc(var(--scale) * -14);
+}
+
+.value {
+    font-size: calc(var(--scale) * 54);
+    margin-top: calc(var(--scale) * 10);
+}

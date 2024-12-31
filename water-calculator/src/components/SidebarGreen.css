@@ -1,0 +1,11 @@
+@import url('../index.css');
+
+.sidebar-green {
+    width: calc(var(--scale) * 91);
+    height: 100%;
+    position: absolute;
+    left: calc(var(--scale) * 0);
+    top: calc(var(--scale) * 0);
+    background-color: #119A0E;
+    overflow: visible;
+}

@@ -34,7 +34,7 @@ function Question1() {
         onChange={handleChange}
         valueLabelDisplay="auto"
         sx={{
-          color: "#1976d2",
+          color: "#0E4B9A",
           width: `calc(var(--scale) * 561)`,
           height: `calc(var(--scale) * 20)`,
         }}
