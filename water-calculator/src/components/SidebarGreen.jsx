@@ -23,7 +23,7 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             className={`item ${[12, 13, 14].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/sprinkler.svg").default}
             alt="sprinkler"
-            onClick={() => handleNavigation(1)}
+            onClick={() => handleNavigation(12)}
           />
           <div className={`circles ${showSprinklerCircles ? 'expanded' : ''}`}>
             {[12, 13, 14].map((index) => (
@@ -52,10 +52,10 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             className={`item ${[16, 17].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/pool.svg").default}
             alt="pool"
-            onClick={() => handleNavigation(7)}
+            onClick={() => handleNavigation(16)}
           />
           <div className={`circles ${showPoolCircles ? 'expanded' : ''}`}>
-            {[15, 16].map((index) => (
+            {[16, 17].map((index) => (
               <img
                 key={index}
                 className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}
@@ -75,10 +75,10 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             className={`item ${[18, 19].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/car.svg").default}
             alt="car"
-            onClick={() => handleNavigation(7)}
+            onClick={() => handleNavigation(18)}
           />
           <div className={`circles ${showCarCircles ? 'expanded' : ''}`}>
-            {[17, 18].map((index) => (
+            {[18, 19].map((index) => (
               <img
                 key={index}
                 className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}

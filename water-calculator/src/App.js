@@ -6,6 +6,7 @@ import QuestionBath from './components/QuestionBath';
 import QuestionPicture from './components/QuestionPicture';
 import QuestionAdvancedSelection from './components/QuestionAdvancedSelection';
 import QuestionGarden from './components/QuestionGarden';
+import QuestionPool from './components/QuestionPool';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
@@ -365,7 +366,6 @@ function App() {
         isGreen: true,
       },
     },
-
     // Question 14
     {
       component: (
@@ -418,6 +418,155 @@ function App() {
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
       },
+    },  
+    // Question 16
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/barrel.svg").default}
+            titleText="Съд за дъжд"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Имате ли съд за дъждовна вода?"
+            isGreen={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/barrel.png")}
+            alt="Barrel"
+            width="var(--scale) * 700" 
+            margin="32%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не'],
+        isGreen: true,
+      },
+    },
+    // Question 17
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/pool.svg").default}
+            titleText="Плувен басейн"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Имате ли плувен басейн?"
+            isGreen={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/pool.png")}
+            alt="Pool"
+            width="var(--scale) * 700" 
+            margin="32%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не'],
+        isGreen: true,
+      },
+    },
+    // Question 18
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/pool.svg").default}
+            titleText="Плувен басейн"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Колко месеца той седи покрит?"
+            isGreen={true}
+          />
+          <QuestionPool/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isGreen: true,
+      },
+    },
+    // Question 19
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/car.svg").default}
+            titleText="Автопочистване"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Имате ли автомобил?"
+            isGreen={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/car.png")}
+            alt="Car"
+            width="var(--scale) * 550" 
+            margin="36%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не'],
+        isGreen: true,
+      },
+    },
+    // Question 20
+    {
+      component: (
+        <>
+          <SidebarGreen
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/car.svg").default}
+            titleText="Автопочистване"
+            lineColor={require("./images/lines/green.svg").default}
+            questionText="Как си миете автомобила?"
+            isGreen={true}
+          />
+          <QuestionAdvancedSelection
+            options={[
+              "С маркуч от вкъщи",
+              "Автомивка",
+              "Автомивка на самообслужване",
+            ]}
+            questionCount={4}
+            bigImageSrc={require("./images/all/carwash.png")}
+            isGreen={true}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isGreen: true,
+      },
     },
   ];  
 
@@ -445,7 +594,7 @@ function App() {
   useEffect(() => {
     if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {
       document.body.style.backgroundColor = '#E1F1FE';
-    } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 18) {
+    } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
       document.body.style.backgroundColor = '#E1FEED';
     }
 

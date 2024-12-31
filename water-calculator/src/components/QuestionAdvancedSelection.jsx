@@ -1,7 +1,7 @@
 import './QuestionAdvancedSelection.css';
 import { useState } from 'react';
 
-function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSrc }) {
+function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSrc, isGreen = false }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const periods = ["Ден", "Седмица", "Месец", "Година"];
@@ -61,6 +61,11 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
               <button
                 className={`selection ${isSelected ? "selected" : ""}`}
                 onClick={() => handleSelect(option)}
+                style={
+                  !isSelected && isGreen
+                    ? { backgroundColor: '#119A0E', color: '#FFFFFF' }
+                    : {}
+                }
               >
                 {option}
               </button>
