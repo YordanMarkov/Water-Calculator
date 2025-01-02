@@ -5,6 +5,7 @@ function SidebarPurple({ currentQuestionIndex, setCurrentQuestionIndex }) {
   const [showBulbCircles, setShowBulbCircles] = useState(false);
   const [showRecycleCircles, setShowRecycleCircles] = useState(false);
   const [showChatCircles, setShowChatCircles] = useState(false);
+  const [showFoodCircles, setShowFoodCircles] = useState(false);
 
   const handleNavigation = (index) => {
     setCurrentQuestionIndex(index);
@@ -78,20 +79,36 @@ function SidebarPurple({ currentQuestionIndex, setCurrentQuestionIndex }) {
           </div>
         </div>
 
-        {/* Food (no dots) */}
-        <img
-          className={`item ${currentQuestionIndex === 28 ? 'active' : ''}`}
-          src={require("../images/icons/food.svg").default}
-          alt="food"
-          onClick={() => handleNavigation(28)}
-        />
+        {/* Food (with 2 dots) */}
+        <div
+          onMouseEnter={() => setShowFoodCircles(true)}
+          onMouseLeave={() => setShowFoodCircles(false)}
+        >
+          <img
+            className={`item ${[28, 29].includes(currentQuestionIndex) ? 'active' : ''}`}
+            src={require("../images/icons/food.svg").default}
+            alt="food"
+            onClick={() => handleNavigation(28)}
+          />
+          <div className={`circles ${showFoodCircles ? 'expanded' : ''}`}>
+            {[28, 29].map((index) => (
+              <img
+                key={index}
+                className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}
+                src={require("../images/icons/circle.svg").default}
+                alt={`circle ${index}`}
+                onClick={() => handleNavigation(index)}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Bone (no dots) */}
         <img
-          className={`item ${currentQuestionIndex === 29 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 30 ? 'active' : ''}`}
           src={require("../images/icons/bone.svg").default}
           alt="bone"
-          onClick={() => handleNavigation(29)}
+          onClick={() => handleNavigation(30)}
         />
 
         {/* Chat (with 2 dots) */}
@@ -100,13 +117,13 @@ function SidebarPurple({ currentQuestionIndex, setCurrentQuestionIndex }) {
           onMouseLeave={() => setShowChatCircles(false)}
         >
           <img
-            className={`item ${[30, 31].includes(currentQuestionIndex) ? 'active' : ''}`}
+            className={`item ${[31, 32].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/chat.svg").default}
             alt="chat"
-            onClick={() => handleNavigation(30)}
+            onClick={() => handleNavigation(31)}
           />
           <div className={`circles ${showChatCircles ? 'expanded' : ''}`}>
-            {[30, 31].map((index) => (
+            {[31, 32].map((index) => (
               <img
                 key={index}
                 className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}

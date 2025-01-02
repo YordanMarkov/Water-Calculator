@@ -17,7 +17,8 @@ function QuestionEl() {
       <img className="el-separation" src={require("../images/all/el_seperation.png")} alt="El-separation" />
       <p className="value-home">{valueHome}%</p>
       <p className="value-el">{valueEl}%</p>
-
+      <p className="at-home">У дома</p>
+      <p className="el-cent">Ел. централа</p>
       <Slider
         value={sliderValue}
         onChange={handleSliderChange}

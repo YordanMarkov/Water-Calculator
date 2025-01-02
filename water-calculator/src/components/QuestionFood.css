@@ -1,0 +1,107 @@
+@import url('../index.css');
+
+.purple-counter {
+    position: absolute;
+    width: calc(var(--scale) * 307);
+    height: calc(var(--scale) * 456);
+    right: calc(var(--scale) * 120);
+    bottom: calc(var(--scale) * 140);
+}
+
+.food-title-counter, .food-end-counter, .food-counter {
+    position: absolute;
+    color: white;
+    font-size: calc(var(--scale) * 40);
+    z-index: 1;
+    width: calc(var(--scale) * 213);
+    text-align: center;
+    right: calc(var(--scale) * 170);
+}
+
+.food-title-counter {
+    bottom: calc(var(--scale) * 480);
+}
+
+.food-counter {
+    bottom: calc(var(--scale) * 280);
+    font-size: calc(var(--scale) * 50);
+}
+
+.food-end-counter {
+    bottom: calc(var(--scale) * 140);
+}
+
+.purple-image {
+    position: absolute;
+    width: calc(var(--scale) * 512);
+    left: calc(var(--scale) * 40);
+    bottom: calc(var(--scale) * 0);
+    z-index: -1;
+}
+
+.food-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: calc(var(--scale) * 20); 
+}
+
+.food-questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-question {
+    display: flex;
+    flex-direction: row;
+    background-image: url("../images/all/purple-template-question.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: calc(var(--scale) * 777);
+    height: calc(var(--scale) * 71);
+    margin-top: calc(var(--scale) * 30);
+}
+
+.food-title, .food-value {
+    color: white;
+    font-size: calc(var(--scale) * 32);
+}
+
+.food-title {
+    width: calc(var(--scale) * 489);
+    height: calc(var(--scale) * 36);
+    text-align: center;
+    margin-left: calc(var(--scale) * 14);
+    margin-top: calc(var(--scale) * 20);
+}
+
+.food-questions-operations {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: calc(var(--scale) * 16);
+    margin-left: calc(var(--scale) * 66);
+    width: calc(var(--scale) * 144);
+    height: calc(var(--scale) * 36);
+}
+
+.food-sign {
+    width: calc(var(--scale) * 36);
+    opacity: 1;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.food-sign:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.food-sign.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+}  

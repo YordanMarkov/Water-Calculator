@@ -10,6 +10,7 @@ import QuestionPool from './components/QuestionPool';
 import QuestionKM from './components/QuestionKM';
 import QuestionBG from './components/QuestionBG';
 import QuestionEl from './components/QuestionEl';
+import QuestionFood from './components/QuestionFood';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
@@ -795,6 +796,66 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
+    // Question 30
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/food.svg").default}
+            titleText="Хранене"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Какво е вашето хранене?"
+            isPurple={true}
+          />
+          <QuestionFood
+            foodCounter={4}
+            foodEndCounterText="в дома"
+            questions={["Веган", "Вегетарианец", "Всеяден"]}
+            foodImage={require("./images/all/foodtray.png")}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
+    // Question 31
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/food.svg").default}
+            titleText="Хранене"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Колко често ядете месо?"
+            isPurple={true}
+          />
+          <QuestionFood
+            foodCounter={2}
+            foodEndCounterText="всеядни"
+            questions={["Не всеки ден", "Веднъж дневно", "Два пъти дневно", "На всяко хранене"]}
+            foodImage={require("./images/all/steak.png")}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
         isPurple: true,
       },
     },

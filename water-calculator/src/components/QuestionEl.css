@@ -33,3 +33,19 @@
 .value-el {
     left: calc(var(--scale) * 1360); 
 }
+
+.at-home, .el-cent {
+    position: absolute;
+    z-index: 1;
+    font-size: calc(var(--scale) * 30); 
+    color: white;
+    top: calc(var(--scale) * 570);
+}
+
+.at-home {
+    left: calc(var(--scale) * 475); 
+}
+
+.el-cent {
+    left: calc(var(--scale) * 1315); 
+}
