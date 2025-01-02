@@ -648,6 +648,156 @@ function App() {
         isPurple: true,
       },
     },
+    // Question 24
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/bag.svg").default}
+            titleText="Пазаруване"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Колко пазарувате?"
+            isPurple={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/shopping.png")}
+            alt="Shopping"
+            width="var(--scale) * 311" 
+            margin="41%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
+    // Question 25
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/recycle.svg").default}
+            titleText="Хартия"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Рециклирате ли хартия?"
+            isPurple={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/paper.png")}
+            alt="Paper"
+            width="var(--scale) * 311" 
+            margin="42%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
+    // Question 26
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/recycle.svg").default}
+            titleText="Пластмаса"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Рециклирате ли пластмаса?"
+            isPurple={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/plastic.png")}
+            alt="Plastic"
+            width="var(--scale) * 311" 
+            margin="42%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
+    // Question 27
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/recycle.svg").default}
+            titleText="Бутилки и кенчета"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Рециклирате ли вашите стъклени бутилки и метални кенчета?"
+            isPurple={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/bottles-cans.png")}
+            alt="Bottles-cans"
+            width="var(--scale) * 611" 
+            margin="31%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
+    // Question 28
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/recycle.svg").default}
+            titleText="Плат"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Дарявате или преизползвате ли вашите стари дрехи, чаршафи и други?"
+            isPurple={true}
+          />
+          <QuestionPicture
+            src={require("./images/all/donate.png")}
+            alt="Donate"
+            width="var(--scale) * 311" 
+            margin="42%"
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: ['Да', 'Не', 'Понякога'],
+        isPurple: true,
+      },
+    },
   ];  
 
   const goToNextQuestion = () => {

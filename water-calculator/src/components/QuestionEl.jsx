@@ -33,6 +33,7 @@ function QuestionEl() {
           },
           '& .MuiSlider-thumb': {
             width: `calc(var(--scale) * 70)`,
+            height: `calc(var(--scale) * 20)`,
             borderRadius: 'calc(var(--scale) * 30)',
           }
         }}
