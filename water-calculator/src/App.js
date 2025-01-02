@@ -8,6 +8,7 @@ import QuestionAdvancedSelection from './components/QuestionAdvancedSelection';
 import QuestionGarden from './components/QuestionGarden';
 import QuestionPool from './components/QuestionPool';
 import QuestionKM from './components/QuestionKM';
+import QuestionBG from './components/QuestionBG';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
@@ -587,6 +588,31 @@ function App() {
             isPurple={true}
           />
           <QuestionKM/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
+    // Question 22
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/bulb.svg").default}
+            titleText="Електричество"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="В коя област живеете?"
+            isPurple={true}
+          />
+          <QuestionBG/>
         </>
       ),
       answerProps: {
