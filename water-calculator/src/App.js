@@ -9,6 +9,7 @@ import QuestionGarden from './components/QuestionGarden';
 import QuestionPool from './components/QuestionPool';
 import QuestionKM from './components/QuestionKM';
 import QuestionBG from './components/QuestionBG';
+import QuestionEl from './components/QuestionEl';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
@@ -613,6 +614,31 @@ function App() {
             isPurple={true}
           />
           <QuestionBG/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
+    // Question 23
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/bulb.svg").default}
+            titleText="Електричество"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Откъде идва вашият ток?"
+            isPurple={true}
+          />
+          <QuestionEl/>
         </>
       ),
       answerProps: {

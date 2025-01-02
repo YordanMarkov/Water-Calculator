@@ -1,0 +1,35 @@
+@import url('../index.css');
+
+.el-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(var(--scale) * 20);
+    margin-bottom: calc(var(--scale) * 20); 
+}
+
+.el-separation {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: calc(var(--scale) * 5); 
+    width: calc(var(--scale) * 1174); 
+    overflow-y: auto;
+    margin-bottom: calc(var(--scale) * 20); 
+}
+
+.value-home, .value-el {
+    position: absolute;
+    z-index: 1;
+    font-size: calc(var(--scale) * 60); 
+    color: white;
+    top: calc(var(--scale) * 405);
+}
+
+.value-home {
+    left: calc(var(--scale) * 470); 
+}
+
+.value-el {
+    left: calc(var(--scale) * 1360); 
+}
