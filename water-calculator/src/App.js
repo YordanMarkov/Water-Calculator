@@ -7,9 +7,11 @@ import QuestionPicture from './components/QuestionPicture';
 import QuestionAdvancedSelection from './components/QuestionAdvancedSelection';
 import QuestionGarden from './components/QuestionGarden';
 import QuestionPool from './components/QuestionPool';
+import QuestionKM from './components/QuestionKM';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
+import SidebarPurple from './components/SidebarPurple';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -568,6 +570,32 @@ function App() {
         isGreen: true,
       },
     },
+    // Outdoor Water
+    // Question 21
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/car-purple.svg").default}
+            titleText="Шофиране"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Колко километра изминавате седмично?"
+            isPurple={true}
+          />
+          <QuestionKM/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
   ];  
 
   const goToNextQuestion = () => {
@@ -596,6 +624,8 @@ function App() {
       document.body.style.backgroundColor = '#E1F1FE';
     } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
       document.body.style.backgroundColor = '#E1FEED';
+    } else if (currentQuestionIndex >= 20) {
+      document.body.style.backgroundColor = '#E1E4FE';
     }
 
     return () => {

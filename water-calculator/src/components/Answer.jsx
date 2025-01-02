@@ -7,15 +7,16 @@ function Answer({
   goToNext, 
   goToPrev, 
   onOptionClick, 
-  isGreen 
+  isGreen, 
+  isPurple 
 }) {
 
   const buttonStyle = {
-    backgroundColor: isGreen ? '#119A0E' : '',
+    backgroundColor: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '',
   };
 
   const nextButtonStyle = {
-    backgroundColor: isGreen ? '#119A0E' : '',
+    backgroundColor: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '',
   };
 
   return (
@@ -23,7 +24,13 @@ function Answer({
       {isTherePrev && (
         <img
           className="prev"
-          src={require(isGreen ? "../images/all/prev-green.svg" : "../images/all/prev.svg").default}
+          src={require(
+            isPurple 
+              ? "../images/all/prev-purple.svg" 
+              : isGreen 
+              ? "../images/all/prev-green.svg" 
+              : "../images/all/prev.svg"
+          ).default}
           alt="prev"
           onClick={goToPrev}
         />

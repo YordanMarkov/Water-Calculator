@@ -1,10 +1,9 @@
 import './Title.css';
 import React from 'react';
 
-function Title({ iconPath, titleText, lineColor, questionText, isGreen }) {
-  
+function Title({ iconPath, titleText, lineColor, questionText, isGreen, isPurple }) {
   const titleStyle = {
-    color: isGreen ? '#119A0E' : '#0E4B9A',
+    color: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '#0E4B9A',
   };
 
   return (
