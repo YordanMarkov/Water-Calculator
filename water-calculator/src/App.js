@@ -13,12 +13,34 @@ import QuestionEl from './components/QuestionEl';
 import QuestionFood from './components/QuestionFood';
 import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
+import AnswerVerticalSection from './components/AnswerVerticalSection';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
 import SidebarPurple from './components/SidebarPurple';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const goToNextQuestion = () => {
+    if (
+      currentQuestionIndex < questions.length - 1 &&
+      questions[currentQuestionIndex].answerProps.isThereNext
+    ) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const goToPrevQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
+  const handleOptionClick = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
 
   const questions = [
     // Question 1
@@ -885,28 +907,63 @@ function App() {
         isPurple: true,
       },
     },
+    // Question 32
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/chat.svg").default}
+            titleText="Още малко..."
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="От какво се интересувате най-много?"
+            isPurple={true}
+          />
+          <AnswerVerticalSection 
+            questions={['Как да пестя вода', 'Да помогна на природата', 'Пестене на пари', 'Да разбера си водния отпечатък']} 
+            goToNext={handleOptionClick}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
+    // Question 33
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/chat.svg").default}
+            titleText="Последен въпрос!"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="За какво най-много искате да научите?"
+            isPurple={true}
+          />
+          <AnswerVerticalSection 
+            questions={['За вътрешната ВиК система', 'За външната ВиК система', 'За виртуалната ВиК система']} 
+            goToNext={handleOptionClick}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: false,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
   ];  
-
-  const goToNextQuestion = () => {
-    if (
-      currentQuestionIndex < questions.length - 1 &&
-      questions[currentQuestionIndex].answerProps.isThereNext
-    ) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
-  };
-
-  const goToPrevQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-    }
-  };
-
-  const handleOptionClick = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
-  };
 
   useEffect(() => {
     if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {

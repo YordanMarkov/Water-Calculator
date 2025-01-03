@@ -8,7 +8,7 @@ function Answer({
   goToPrev, 
   onOptionClick, 
   isGreen, 
-  isPurple 
+  isPurple,
 }) {
 
   const buttonStyle = {
