@@ -18,6 +18,7 @@ import AnswerVerticalSection from './components/AnswerVerticalSection';
 // import SidebarGreen from './components/SidebarGreen';
 // import SidebarPurple from './components/SidebarPurple';
 import SidebarCombined from './components/SidebarCombined';
+import Results from './components/Results';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -42,6 +43,10 @@ function App() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
+
+  const goBack = () => {
+    setCurrentQuestionIndex(0);
+  }
 
   const questions = [
     // Question 1
@@ -832,6 +837,21 @@ function App() {
         isPurple: true,
       },
     },
+    // Results
+    {
+      component: (
+        <>
+          <Results
+            goBack={goBack}
+          />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: false,
+        isThereNext: false,
+        buttonTitles: [],
+      },
+    }
   ];  
 
   const sidebarRef = useRef(null);
@@ -841,8 +861,10 @@ function App() {
       document.body.style.backgroundColor = '#E1F1FE';
     } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
       document.body.style.backgroundColor = '#E1FEED';
-    } else if (currentQuestionIndex >= 20) {
+    } else if (currentQuestionIndex >= 20 && currentQuestionIndex <= 32) {
       document.body.style.backgroundColor = '#E1E4FE';
+    } else if (currentQuestionIndex === 33) {
+      document.body.style.backgroundColor = '#E1F1FE';
     }
 
     if (sidebarRef.current) {
@@ -863,11 +885,13 @@ function App() {
   return (
     <div>
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
-      <SidebarCombined
-        currentQuestionIndex={currentQuestionIndex}
-        setCurrentQuestionIndex={setCurrentQuestionIndex}
-        ref={sidebarRef}
-      />
+      {currentQuestionIndex !== 33 && (
+        <SidebarCombined
+          currentQuestionIndex={currentQuestionIndex}
+          setCurrentQuestionIndex={setCurrentQuestionIndex}
+          ref={sidebarRef}
+        />
+      )}
       {questions[currentQuestionIndex].component}
       <Answer
         {...questions[currentQuestionIndex].answerProps}
@@ -879,7 +903,7 @@ function App() {
         onOptionClick={handleOptionClick}
       />
     </div>
-  );
+  );  
 }
 
 export default App;
