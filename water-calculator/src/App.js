@@ -603,7 +603,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Понякога'],
+        buttonTitles: ['Само нужното', 'Харесвам', 'До припадък!'],
         isPurple: true,
       },
     },
