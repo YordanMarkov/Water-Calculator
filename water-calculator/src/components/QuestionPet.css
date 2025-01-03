@@ -1,0 +1,51 @@
+@import url('../index.css');
+
+.pet-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pet-image {
+    width: calc(var(--scale) * 400);
+    margin-top: calc(var(--scale) * -130);
+}
+
+.pet-question {
+    display: flex;
+    flex-direction: row;
+    background-image: url("../images/all/pet-template.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: calc(var(--scale) * 463);
+    height: calc(var(--scale) * 71);
+    margin-bottom: calc(var(--scale) * 30);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pet-text {
+    color: white;
+    font-size: calc(var(--scale) * 30);
+    width: calc(var(--scale) * 226);
+    text-align: center;
+}
+
+.pet-sign {
+    width: calc(var(--scale) * 40);
+    opacity: 1;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.pet-sign:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.pet-sign.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+}  

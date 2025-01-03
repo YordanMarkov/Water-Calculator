@@ -11,6 +11,7 @@ import QuestionKM from './components/QuestionKM';
 import QuestionBG from './components/QuestionBG';
 import QuestionEl from './components/QuestionEl';
 import QuestionFood from './components/QuestionFood';
+import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
 import Sidebar from './components/Sidebar';
 import SidebarGreen from './components/SidebarGreen';
@@ -850,6 +851,31 @@ function App() {
             questions={["Не всеки ден", "Веднъж дневно", "Два пъти дневно", "На всяко хранене"]}
             foodImage={require("./images/all/steak.png")}
           />
+        </>
+      ),
+      answerProps: {
+        isTherePrev: true,
+        isThereNext: true,
+        buttonTitles: [],
+        isPurple: true,
+      },
+    },
+    // Question 31
+    {
+      component: (
+        <>
+          <SidebarPurple
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+          />
+          <Title
+            iconPath={require("./images/icons/bone.svg").default}
+            titleText="Храна за животни"
+            lineColor={require("./images/lines/purple.svg").default}
+            questionText="Какъв бюджет заделяте, за да закупите храна за вашите домашни любимци?"
+            isPurple={true}
+          />
+          <QuestionPet/>
         </>
       ),
       answerProps: {
