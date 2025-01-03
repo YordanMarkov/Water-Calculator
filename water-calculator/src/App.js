@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Title from './components/Title';
 import QuestionPeople from './components/QuestionPeople';
@@ -14,9 +14,10 @@ import QuestionFood from './components/QuestionFood';
 import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
 import AnswerVerticalSection from './components/AnswerVerticalSection';
-import Sidebar from './components/Sidebar';
-import SidebarGreen from './components/SidebarGreen';
-import SidebarPurple from './components/SidebarPurple';
+// import Sidebar from './components/Sidebar';
+// import SidebarGreen from './components/SidebarGreen';
+// import SidebarPurple from './components/SidebarPurple';
+import SidebarCombined from './components/SidebarCombined';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -47,10 +48,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/home.svg").default}
             titleText="У дома"
@@ -70,10 +67,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Душ"
@@ -96,10 +89,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Душ"
@@ -122,10 +111,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Вана"
@@ -145,10 +130,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
@@ -171,10 +152,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
@@ -197,10 +174,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/toilet.svg").default}
             titleText="Тоалетна"
@@ -225,10 +198,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
@@ -251,10 +220,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
@@ -277,10 +242,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/dish.svg").default}
             titleText="Съдове"
@@ -309,10 +270,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/washingmachine.svg").default}
             titleText="Пералня"
@@ -341,10 +298,6 @@ function App() {
     {
       component: (
         <>
-          <Sidebar
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/graywater.svg").default}
             titleText="Сиво-водна система"
@@ -370,10 +323,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/sprinkler.svg").default}
             titleText="Морава и градина"
@@ -398,10 +347,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/sprinkler.svg").default}
             titleText="Морава и градина"
@@ -423,10 +368,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/sprinkler.svg").default}
             titleText="Морава и градина"
@@ -451,10 +392,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/barrel.svg").default}
             titleText="Съд за дъжд"
@@ -481,10 +418,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/pool.svg").default}
             titleText="Плувен басейн"
@@ -511,10 +444,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/pool.svg").default}
             titleText="Плувен басейн"
@@ -536,10 +465,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/car.svg").default}
             titleText="Автопочистване"
@@ -566,10 +491,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarGreen
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/car.svg").default}
             titleText="Автопочистване"
@@ -601,10 +522,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/car-purple.svg").default}
             titleText="Шофиране"
@@ -626,10 +543,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bulb.svg").default}
             titleText="Електричество"
@@ -651,10 +564,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bulb.svg").default}
             titleText="Електричество"
@@ -676,10 +585,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bag.svg").default}
             titleText="Пазаруване"
@@ -706,10 +611,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/recycle.svg").default}
             titleText="Хартия"
@@ -736,10 +637,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/recycle.svg").default}
             titleText="Пластмаса"
@@ -766,10 +663,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/recycle.svg").default}
             titleText="Бутилки и кенчета"
@@ -796,10 +689,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/recycle.svg").default}
             titleText="Плат"
@@ -826,10 +715,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/food.svg").default}
             titleText="Хранене"
@@ -856,10 +741,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/food.svg").default}
             titleText="Хранене"
@@ -886,10 +767,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/bone.svg").default}
             titleText="Храна за животни"
@@ -911,10 +788,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/chat.svg").default}
             titleText="Още малко..."
@@ -939,10 +812,6 @@ function App() {
     {
       component: (
         <>
-          <SidebarPurple
-            currentQuestionIndex={currentQuestionIndex}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
-          />
           <Title
             iconPath={require("./images/icons/chat.svg").default}
             titleText="Последен въпрос!"
@@ -965,6 +834,8 @@ function App() {
     },
   ];  
 
+  const sidebarRef = useRef(null);
+
   useEffect(() => {
     if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {
       document.body.style.backgroundColor = '#E1F1FE';
@@ -972,6 +843,16 @@ function App() {
       document.body.style.backgroundColor = '#E1FEED';
     } else if (currentQuestionIndex >= 20) {
       document.body.style.backgroundColor = '#E1E4FE';
+    }
+
+    if (sidebarRef.current) {
+      if (currentQuestionIndex <= 11) {
+        sidebarRef.current.scrollTop = 0;
+      } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
+        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight / 3;
+      } else if (currentQuestionIndex >= 20) {
+        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight;
+      }
     }
 
     return () => {
@@ -982,6 +863,11 @@ function App() {
   return (
     <div>
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
+      <SidebarCombined
+        currentQuestionIndex={currentQuestionIndex}
+        setCurrentQuestionIndex={setCurrentQuestionIndex}
+        ref={sidebarRef}
+      />
       {questions[currentQuestionIndex].component}
       <Answer
         {...questions[currentQuestionIndex].answerProps}

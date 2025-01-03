@@ -3,7 +3,7 @@
 .sidebar {
     width: calc(var(--scale) * 91);
     height: 100%;
-    position: absolute;
+    position: relative;
     left: calc(var(--scale) * 0);
     top: calc(var(--scale) * 0);
     background-color: #0E4B9A;
@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: column;
     width: calc(var(--scale) * 91);
-    height: 55%;
+    height: calc(var(--scale) * 520);
     overflow-y: scroll;
     margin-top: calc(var(--scale) * 280);
     margin-left: calc(var(--scale) * 20);
