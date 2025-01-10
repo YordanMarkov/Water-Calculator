@@ -7,17 +7,17 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
   const [showCarCircles, setShowCarCircles] = useState(false);
 
   const handleNavigation = (index) => {
-    setCurrentQuestionIndex(index);
+    setCurrentQuestionIndex(index); // Navigate to the specific question
   };
 
   return (
     <div className="sidebar-green">
       <p className="sidebar-title">Външна вода</p>
       <div className="items">
-        {/* Sprinkler */}
+        {/* Sprinkler Icon with Sub-options */}
         <div
-          onMouseEnter={() => setShowSprinklerCircles(true)}
-          onMouseLeave={() => setShowSprinklerCircles(false)}
+          onMouseEnter={() => setShowSprinklerCircles(true)} // Show circles on hover
+          onMouseLeave={() => setShowSprinklerCircles(false)} // Hide circles on hover out
         >
           <img
             className={`item ${[12, 13, 14].includes(currentQuestionIndex) ? 'active' : ''}`}
@@ -25,6 +25,7 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             alt="sprinkler"
             onClick={() => handleNavigation(12)}
           />
+          {/* Sub-circles for sprinkler options */}
           <div className={`circles ${showSprinklerCircles ? 'expanded' : ''}`}>
             {[12, 13, 14].map((index) => (
               <img
@@ -37,16 +38,19 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             ))}
           </div>
         </div>
-        {/* Other Elements */}
+
+        {/* Barrel Icon */}
         <img
           className={`item ${currentQuestionIndex === 15 ? 'active' : ''}`}
           src={require("../images/icons/barrel.svg").default}
           alt="barrel"
           onClick={() => handleNavigation(15)}
         />
+
+        {/* Pool Icon with Sub-options */}
         <div
-          onMouseEnter={() => setShowPoolCircles(true)}
-          onMouseLeave={() => setShowPoolCircles(false)}
+          onMouseEnter={() => setShowPoolCircles(true)} // Show circles on hover
+          onMouseLeave={() => setShowPoolCircles(false)} // Hide circles on hover out
         >
           <img
             className={`item ${[16, 17].includes(currentQuestionIndex) ? 'active' : ''}`}
@@ -54,6 +58,7 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             alt="pool"
             onClick={() => handleNavigation(16)}
           />
+          {/* Sub-circles for pool options */}
           <div className={`circles ${showPoolCircles ? 'expanded' : ''}`}>
             {[16, 17].map((index) => (
               <img
@@ -67,9 +72,10 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
           </div>
         </div>
 
+        {/* Car Icon with Sub-options */}
         <div
-          onMouseEnter={() => setShowCarCircles(true)}
-          onMouseLeave={() => setShowCarCircles(false)}
+          onMouseEnter={() => setShowCarCircles(true)} // Show circles on hover
+          onMouseLeave={() => setShowCarCircles(false)} // Hide circles on hover out
         >
           <img
             className={`item ${[18, 19].includes(currentQuestionIndex) ? 'active' : ''}`}
@@ -77,6 +83,7 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             alt="car"
             onClick={() => handleNavigation(18)}
           />
+          {/* Sub-circles for car options */}
           <div className={`circles ${showCarCircles ? 'expanded' : ''}`}>
             {[18, 19].map((index) => (
               <img
@@ -89,7 +96,6 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
             ))}
           </div>
         </div>
-        
       </div>
     </div>
   );

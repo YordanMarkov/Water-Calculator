@@ -6,9 +6,10 @@ function QuestionBG() {
   const [selectedArea, setSelectedArea] = useState('');
 
   const handleSelectChange = (event) => {
-    setSelectedArea(event.target.value);
+    setSelectedArea(event.target.value); // Set selected area value
   };
 
+  // List of all Bulgarian areas (области)
   const area = [
     "Благоевград", "Добрич", "Плевен", "София",
     "Бургас", "Кърджали", "Пловдив", "София (столица)",
@@ -19,6 +20,7 @@ function QuestionBG() {
     "Габрово", "Перник", "Смолян", "Ямбол"
   ];
 
+  // Map of area names to image sources
   const areaImageMap = {
     "Благоевград": require("../images/all/areas/Blagoevgrad.svg").default,
     "Добрич": require("../images/all/areas/Dobrich.svg").default,
@@ -50,14 +52,17 @@ function QuestionBG() {
     "Ямбол": require("../images/all/areas/Yambol.svg").default,
   };
 
+  // Function to get the image for the selected area
   const getImageSource = () => {
     return areaImageMap[selectedArea] || require("../images/all/bg.png");
   };
 
   return (
     <div className="bulgaria-container">
+      {/* Display the selected area's image */}
       <img className="bulgaria" src={getImageSource()} alt="Bulgaria" />
 
+      {/* Area selection dropdown */}
       <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
         <InputLabel
           sx={{
@@ -101,6 +106,7 @@ function QuestionBG() {
             },
           }}
         >
+          {/* Render area options */}
           {area.map((area, index) => (
             <MenuItem key={index} value={area}>
               {area}

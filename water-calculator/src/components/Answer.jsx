@@ -10,7 +10,7 @@ function Answer({
   isGreen, 
   isPurple,
 }) {
-
+  // Set button background color based on props (sections - blue, green, purple)
   const buttonStyle = {
     backgroundColor: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '',
   };
@@ -21,37 +21,40 @@ function Answer({
 
   return (
     <div className="buttons">
+      {/* Previous button if allowed */}
       {isTherePrev && (
         <img
           className="prev"
           src={require(
             isPurple 
-              ? "../images/all/prev-purple.svg" 
+              ? "../images/all/prev-purple.svg" // Purple style
               : isGreen 
-              ? "../images/all/prev-green.svg" 
-              : "../images/all/prev.svg"
+              ? "../images/all/prev-green.svg" // Green style
+              : "../images/all/prev.svg" // Default style
           ).default}
           alt="prev"
-          onClick={goToPrev}
+          onClick={goToPrev} // Go to previous question
         />
       )}
 
+      {/* Render buttons with titles */}
       {buttonTitles.map((title, index) => (
         <button
           key={index}
           className="button"
-          onClick={onOptionClick}
+          onClick={onOptionClick} // Handle option click
           style={buttonStyle}
         >
           {title}
         </button>
       ))}
 
+      {/* Next button if allowed */}
       {isThereNext && (
         <button
           className="next"
-          onClick={goToNext}
-          style={nextButtonStyle} 
+          onClick={goToNext} // Go to next question
+          style={nextButtonStyle}
         >
           Напред
         </button>

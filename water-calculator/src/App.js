@@ -14,40 +14,52 @@ import QuestionFood from './components/QuestionFood';
 import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
 import AnswerVerticalSection from './components/AnswerVerticalSection';
+
+// These Sidebars were split into separate components 
+// but I combined them into one SidebarCombined component
+
 // import Sidebar from './components/Sidebar';
 // import SidebarGreen from './components/SidebarGreen';
 // import SidebarPurple from './components/SidebarPurple';
+
 import SidebarCombined from './components/SidebarCombined';
 import Results from './components/Results';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
+  // Go to the next question
   const goToNextQuestion = () => {
     if (
-      currentQuestionIndex < questions.length - 1 &&
-      questions[currentQuestionIndex].answerProps.isThereNext
+      currentQuestionIndex < questions.length - 1 && // Not the last question
+      questions[currentQuestionIndex].answerProps.isThereNext // Can go forward
     ) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to next
     }
   };
 
+  // Go to the previous question
   const goToPrevQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    if (currentQuestionIndex > 0) { // Not the first question
+      setCurrentQuestionIndex(currentQuestionIndex - 1); // Move back
     }
   };
 
+  // On option click, go to the next question
   const handleOptionClick = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (currentQuestionIndex < questions.length - 1) { // Not the last question
+      setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to next
     }
   };
 
+  // Go back to the first question
   const goBack = () => {
-    setCurrentQuestionIndex(0);
-  }
+    setCurrentQuestionIndex(0); // Reset to start
+  };
 
+
+  // List of all questions in the Water Calculator
+  // All of them are components with different props
   const questions = [
     // Question 1
     {
@@ -857,6 +869,7 @@ function App() {
   const sidebarRef = useRef(null);
 
   useEffect(() => {
+    // Change background color based on question index
     if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {
       document.body.style.backgroundColor = '#E1F1FE';
     } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
@@ -868,23 +881,28 @@ function App() {
     }
 
     if (sidebarRef.current) {
+      // Adjust sidebar scroll position
       if (currentQuestionIndex <= 11) {
-        sidebarRef.current.scrollTop = 0;
+        sidebarRef.current.scrollTop = 0; // Scroll to top
       } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
-        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight / 3;
+        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight / 3; // Scroll to 1/3
       } else if (currentQuestionIndex >= 20) {
-        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight;
+        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight; // Scroll to bottom
       }
     }
 
     return () => {
-      document.body.style.backgroundColor = '';
+      document.body.style.backgroundColor = ''; // Reset background color on cleanup
     };
-  }, [currentQuestionIndex]);
+  }, [currentQuestionIndex]); // Run effect when currentQuestionIndex changes
+
 
   return (
     <div>
+      {/* Logo */}
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
+      
+      {/* Show sidebar if not on the last question (which is the result page) */}
       {currentQuestionIndex !== 33 && (
         <SidebarCombined
           currentQuestionIndex={currentQuestionIndex}
@@ -892,15 +910,19 @@ function App() {
           ref={sidebarRef}
         />
       )}
+      
+      {/* Render the current question's component */}
       {questions[currentQuestionIndex].component}
+      
+      {/* Render the answer section */}
       <Answer
-        {...questions[currentQuestionIndex].answerProps}
-        isTherePrev={questions[currentQuestionIndex].answerProps.isTherePrev}
-        isThereNext={questions[currentQuestionIndex].answerProps.isThereNext}
-        buttonTitles={questions[currentQuestionIndex].answerProps.buttonTitles || []}
-        goToNext={goToNextQuestion}
-        goToPrev={goToPrevQuestion}
-        onOptionClick={handleOptionClick}
+        {...questions[currentQuestionIndex].answerProps} // Pass question props
+        isTherePrev={questions[currentQuestionIndex].answerProps.isTherePrev} // Show prev button
+        isThereNext={questions[currentQuestionIndex].answerProps.isThereNext} // Show next button
+        buttonTitles={questions[currentQuestionIndex].answerProps.buttonTitles || []} // Button titles
+        goToNext={goToNextQuestion} // Next question handler
+        goToPrev={goToPrevQuestion} // Previous question handler
+        onOptionClick={handleOptionClick} // Option click handler
       />
     </div>
   );  

@@ -6,24 +6,25 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
   const [showSinkCircles, setShowSinkCircles] = useState(false);
 
   const handleNavigation = (index) => {
-    setCurrentQuestionIndex(index);
+    setCurrentQuestionIndex(index); // Navigate to the specific question
   };
 
   return (
     <div className="sidebar">
       <p className="sidebar-title">Вътрешна вода</p>
       <div className="items">
-        {/* Home */}
+        {/* Home Icon */}
         <img
           className={`item ${currentQuestionIndex === 0 ? 'active' : ''}`}
           src={require("../images/icons/home.svg").default}
           alt="home"
           onClick={() => handleNavigation(0)}
         />
-        {/* Bath */}
+        
+        {/* Bath Icon with Sub-options */}
         <div
-          onMouseEnter={() => setShowBathCircles(true)}
-          onMouseLeave={() => setShowBathCircles(false)}
+          onMouseEnter={() => setShowBathCircles(true)} // Show circles on hover
+          onMouseLeave={() => setShowBathCircles(false)} // Hide circles on hover out
         >
           <img
             className={`item ${[1, 2, 3, 4, 5].includes(currentQuestionIndex) ? 'active' : ''}`}
@@ -31,6 +32,7 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
             alt="bath"
             onClick={() => handleNavigation(1)}
           />
+          {/* Sub-circles for bath options */}
           <div className={`circles ${showBathCircles ? 'expanded' : ''}`}>
             {[1, 2, 3, 4, 5].map((index) => (
               <img
@@ -43,16 +45,19 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
             ))}
           </div>
         </div>
-        {/* Other Elements */}
+
+        {/* Toilet Icon */}
         <img
           className={`item ${currentQuestionIndex === 6 ? 'active' : ''}`}
           src={require("../images/icons/toilet.svg").default}
           alt="toilet"
           onClick={() => handleNavigation(6)}
         />
+        
+        {/* Sink Icon with Sub-options */}
         <div
-          onMouseEnter={() => setShowSinkCircles(true)}
-          onMouseLeave={() => setShowSinkCircles(false)}
+          onMouseEnter={() => setShowSinkCircles(true)} // Show circles on hover
+          onMouseLeave={() => setShowSinkCircles(false)} // Hide circles on hover out
         >
           <img
             className={`item ${[7, 8].includes(currentQuestionIndex) ? 'active' : ''}`}
@@ -60,6 +65,7 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
             alt="sink"
             onClick={() => handleNavigation(7)}
           />
+          {/* Sub-circles for sink options */}
           <div className={`circles ${showSinkCircles ? 'expanded' : ''}`}>
             {[7, 8].map((index) => (
               <img
@@ -72,6 +78,8 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
             ))}
           </div>
         </div>
+
+        {/* Other static icons */}
         <img
           className={`item ${currentQuestionIndex === 9 ? 'active' : ''}`}
           src={require("../images/icons/dish.svg").default}

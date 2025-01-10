@@ -8,8 +8,8 @@ function QuestionPicture({ src, alt, width, margin }) {
         src={src} 
         alt={alt} 
         style={{
-            width: width ? `calc(${width})` : '', 
-            marginLeft: margin || '' 
+            width: width ? `calc(${width})` : '',  // Dynamic width (if provided)
+            marginLeft: margin || ''  // Dynamic left margin (if provided)
         }} 
       />
     </div>

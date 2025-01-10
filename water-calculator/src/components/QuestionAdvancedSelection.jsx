@@ -6,12 +6,14 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
 
   const periods = ["Ден", "Седмица", "Месец", "Година"];
 
+  // Add an option to selected options
   const handleSelect = (option) => {
     if (!selectedOptions.some(item => item.option === option)) {
       setSelectedOptions([...selectedOptions, { option, times: 0, periodIndex: 0 }]);
     }
   };
 
+  // Increase or decrease the times count
   const handleTimesChange = (option, operation) => {
     setSelectedOptions(selectedOptions.map(item => {
       if (item.option === option) {
@@ -22,6 +24,7 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
     }));
   };
 
+  // Change the period (e.g., day, week)
   const handlePeriodChange = (option, operation) => {
     setSelectedOptions(selectedOptions.map(item => {
       if (item.option === option) {
@@ -35,21 +38,25 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
     }));
   };
 
+  // Remove an option from selected options
   const handleRemove = (option) => {
     setSelectedOptions(selectedOptions.filter(item => item.option !== option));
   };
 
+  // Display only a limited number of options
   const displayedOptions = options.slice(0, Math.min(questionCount, options.length));
 
   return (
     <div className="picture-selectable-questions">
-      <img className="big-img" src={bigImageSrc || require("../images/all/dish.png")} alt="Big image" />
+      {/* Display main image */}
+      <img className="big-img" src={bigImageSrc || require("../images/all/dish.png")} alt="Big illustration" />
       <div className="selectable-questions">
         {displayedOptions.map((option) => {
           const isSelected = selectedOptions.some(item => item.option === option);
 
           return (
             <div className="question-row" key={option}>
+              {/* Remove button for selected options */}
               {isSelected && (
                 <img
                   className="operational-sign remove red"
@@ -58,6 +65,7 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
                   onClick={() => handleRemove(option)}
                 />
               )}
+              {/* Option selection button */}
               <button
                 className={`selection ${isSelected ? "selected" : ""}`}
                 onClick={() => handleSelect(option)}
@@ -69,8 +77,10 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
               >
                 {option}
               </button>
+              {/* Controls for selected options */}
               {isSelected && (
                 <div className="control-details">
+                  {/* Adjust times */}
                   <img
                     className={`operational-sign ${selectedOptions.find(item => item.option === option).times === 0 ? "disabled" : ""}`}
                     src={require("../images/all/minus.svg").default}
@@ -85,6 +95,7 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
                     onClick={() => handleTimesChange(option, "increase")}
                   />
                   <span className="period-label">път(и) на</span>
+                  {/* Adjust period */}
                   <img
                     className={`operational-sign minus ${selectedOptions.find(item => item.option === option).periodIndex === 0 ? "disabled" : ""}`}
                     src={require("../images/all/minus.svg").default}
