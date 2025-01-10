@@ -1,7 +1,7 @@
 # Logic
 In this branch the logic behind the water calculator is being made. This includes switching between the questions, setting limitations, formulating the result and displaying it at the end. 
 
-⚠ This is still **under construction**! ⚠
+⚠️ This is still **under construction**! ⚠️
 
 Other branches:
 - [Indoor Water](https://git.fhict.nl/I524517/passion-project/-/tree/Indoor-Water)
