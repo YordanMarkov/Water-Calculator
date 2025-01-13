@@ -881,16 +881,17 @@ function App() {
       document.body.style.backgroundColor = '#E1F1FE';
     }
 
-    if (sidebarRef.current) {
-      // Adjust sidebar scroll position
-      if (currentQuestionIndex <= 11) {
-        sidebarRef.current.scrollTop = 0; // Scroll to top
-      } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
-        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight / 3; // Scroll to 1/3
-      } else if (currentQuestionIndex >= 20) {
-        sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight; // Scroll to bottom
-      }
-    }
+    // There is no need for that anymore since the sidebar has changed!
+    // if (sidebarRef.current) {
+    //   // Adjust sidebar scroll position
+    //   if (currentQuestionIndex <= 11) {
+    //     sidebarRef.current.scrollTop = 0; // Scroll to top
+    //   } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
+    //     sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight / 3; // Scroll to 1/3
+    //   } else if (currentQuestionIndex >= 20) {
+    //     sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight; // Scroll to bottom
+    //   }
+    // }
 
     return () => {
       document.body.style.backgroundColor = ''; // Reset background color on cleanup

@@ -25,6 +25,8 @@
 
 .slider {
     margin-top: calc(var(--scale) * -14);
+    width: auto;
+    height: auto;
 }
 
 .value {
