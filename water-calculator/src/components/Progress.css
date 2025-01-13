@@ -17,6 +17,7 @@
     border-radius: calc(var(--scale) * 5);
     background-color: #ccc;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .progress-step.active {

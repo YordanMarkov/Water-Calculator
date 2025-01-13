@@ -1,7 +1,11 @@
 import React from 'react';
 import './Progress.css';
 
-function Progress({ currentQuestionIndex }) {
+function Progress({ currentQuestionIndex, setCurrentQuestionIndex }) {
+    const handleNavigation = (index) => {
+        setCurrentQuestionIndex(index); // Navigate to the specific question
+    };
+
     const maxSteps = 32;
 
     const getColor = (index) => {
@@ -19,6 +23,7 @@ function Progress({ currentQuestionIndex }) {
                     style={{
                         backgroundColor: index <= currentQuestionIndex ? getColor(index) : '#ccc',
                     }}
+                    onClick={() => handleNavigation(index)} // Add click handler
                 ></div>
             ))}
         </div>

@@ -928,7 +928,10 @@ function App() {
       />
       {/* Render the progress bar if not on the last question (which is the result page) */}
       {currentQuestionIndex !== 33 && (
-        <Progress currentQuestionIndex={currentQuestionIndex} />
+        <Progress 
+          currentQuestionIndex={currentQuestionIndex} 
+          setCurrentQuestionIndex={setCurrentQuestionIndex}
+        />
       )}
     </div>
   );  
