@@ -14,6 +14,7 @@ import QuestionFood from './components/QuestionFood';
 import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
 import AnswerVerticalSection from './components/AnswerVerticalSection';
+import Progress from './components/Progress';
 
 // These Sidebars were split into separate components 
 // but I combined them into one SidebarCombined component
@@ -924,6 +925,10 @@ function App() {
         goToPrev={goToPrevQuestion} // Previous question handler
         onOptionClick={handleOptionClick} // Option click handler
       />
+      {/* Render the progress bar if not on the last question (which is the result page) */}
+      {currentQuestionIndex !== 33 && (
+        <Progress currentQuestionIndex={currentQuestionIndex} />
+      )}
     </div>
   );  
 }
