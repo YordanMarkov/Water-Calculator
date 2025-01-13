@@ -10,4 +10,5 @@ body {
     position: fixed; 
     top: calc(var(--scale) * 20);
     right: calc(var(--scale) * 20);
+    z-index: 1;
 }

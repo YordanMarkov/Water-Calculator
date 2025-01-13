@@ -2,9 +2,20 @@
 
 .sidebar-purple {
     width: calc(var(--scale) * 91);
+    height: 38%;
     position: relative;
     left: calc(var(--scale) * 0);
     top: calc(var(--scale) * 0);
     background-color: #4B39C3;
     overflow: visible;
+    transition: height 0.5s;
+}
+
+.sidebar-purple:hover {
+    height: 100%;
+}
+
+.sidebar-purple:hover .items {
+    opacity: 1;
+    max-height: calc(var(--scale) * 520);
 }

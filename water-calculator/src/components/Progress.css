@@ -2,18 +2,18 @@
 
 .progress-container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     margin: calc(var(--scale) * 20);
     position: absolute;
-    right: calc(var(--scale) * 20);
-    bottom: calc(var(--scale) * 20);
+    left: calc(var(--scale) * 100);
+    top: calc(var(--scale) * 10);
 }
 
 .progress-step {
     width: calc(var(--scale) * 40);
     height: calc(var(--scale) * 17);
-    margin: calc(var(--scale) * 2) calc(var(--scale) * 0);
+    margin: calc(var(--scale) * 5) calc(var(--scale) * 0);
     border-radius: calc(var(--scale) * 5);
     background-color: #ccc;
     transition: background-color 0.3s ease;

@@ -11,8 +11,16 @@
     flex-direction: column;
     scrollbar-width: none; 
     scroll-behavior: smooth;
+    align-items: center;
+    background-color: #4B39C3;
 }
 
 .sidebar-combined::-webkit-scrollbar {
     display: none;
+}
+
+.arr {
+    z-index: 1;
+    margin-top: calc(var(--scale) * -13);
+    width: calc(var(--scale) * 91);
 }

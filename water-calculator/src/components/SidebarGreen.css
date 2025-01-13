@@ -2,10 +2,20 @@
 
 .sidebar-green {
     width: calc(var(--scale) * 91);
-    height: 100%;
+    height: 38%;
     position: relative;
     left: calc(var(--scale) * 0);
     top: calc(var(--scale) * 0);
     background-color: #119A0E;
     overflow: visible;
+    transition: height 0.5s;
+}
+
+.sidebar-green:hover {
+    height: 100%;
+}
+
+.sidebar-green:hover .items {
+    opacity: 1;
+    max-height: calc(var(--scale) * 520);
 }
