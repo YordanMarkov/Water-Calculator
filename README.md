@@ -1,6 +1,6 @@
 
 # Passion Project - Water Calculator
-[Current live version - click here!](https://coming-soon)
+[Current live version - click here!](https://i524517.hera.fontysict.net/water-calculator/)
 
 ## Description
 
