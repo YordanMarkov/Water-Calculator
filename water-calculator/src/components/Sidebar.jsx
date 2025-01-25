@@ -11,7 +11,10 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
 
   return (
     <div className="sidebar">
-      <p className="sidebar-title">Вътрешна вода</p>
+      <p className="sidebar-title">
+        <span className="bigger">Сградна</span> <br />
+        <span className="faded">ВиК инсталация</span>
+      </p>
       <div className="items">
         {/* Home Icon */}
         <img

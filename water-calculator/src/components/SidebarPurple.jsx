@@ -13,7 +13,10 @@ function SidebarPurple({ currentQuestionIndex, setCurrentQuestionIndex }) {
 
   return (
     <div className="sidebar-purple">
-      <p className="sidebar-title">Виртуална вода</p>
+      <p className="sidebar-title">
+        <span className="bigger">Виртуална</span> <br />
+        <span className="faded">вода</span>
+      </p>
       <div className="items">
         {/* Car Icon (no sub-options) */}
         <img

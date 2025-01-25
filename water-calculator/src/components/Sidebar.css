@@ -16,12 +16,24 @@
 }
 
 .sidebar-title {
-    margin-top: calc(var(--scale) * 60);
-    font-size: calc(var(--scale) * 35);
+    margin-top: calc(var(--scale) * 140);
+    margin-left: calc(var(--scale) * -104);
+    width: calc(var(--scale) * 300);
     color: white;
     transform: rotate(90deg);
-    white-space: nowrap;
+    text-align: center;
+    /* white-space: nowrap; */
 }
+
+.bigger {
+    font-size: calc(var(--scale) * 35);
+}
+  
+.faded {
+    opacity: 0.5;
+    font-size: calc(var(--scale) * 25);
+}
+  
 
 .items {
     z-index: 1;
@@ -30,7 +42,7 @@
     width: calc(var(--scale) * 91);
     height: calc(var(--scale) * 520);
     overflow-y: scroll;
-    margin-top: calc(var(--scale) * 280);
+    margin-top: calc(var(--scale) * 180);
     margin-left: calc(var(--scale) * 20);
     scrollbar-width: none;
     -ms-overflow-style: none;

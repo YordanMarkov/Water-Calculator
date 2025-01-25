@@ -12,7 +12,10 @@ function SidebarGreen({ currentQuestionIndex, setCurrentQuestionIndex }) {
 
   return (
     <div className="sidebar-green">
-      <p className="sidebar-title">Външна вода</p>
+      <p className="sidebar-title">
+        <span className="bigger">Външна</span> <br />
+        <span className="faded">ВиК мрежа</span>
+      </p>
       <div className="items">
         {/* Sprinkler Icon with Sub-options */}
         <div
