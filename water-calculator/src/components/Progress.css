@@ -4,23 +4,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: calc(var(--scale) * 20);
+    margin: 0; /* Remove any extra margins */
     position: absolute;
-    left: calc(var(--scale) * 100);
-    top: calc(var(--scale) * 10);
+    left: calc(var(--scale) * 110);
+    top: 0;
+    height: 100vh; /* Make the container fill the full viewport height */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
 }
 
+/* Step height calculation */
 .progress-step {
-    width: calc(var(--scale) * 40);
-    height: calc(var(--scale) * 17);
-    margin: calc(var(--scale) * 5) calc(var(--scale) * 0);
-    border-radius: calc(var(--scale) * 5);
+    width: calc(var(--scale) * 40); /* Width of each step */
+    height: calc(100vh / 33); /* Height of each step to fill the screen */
+    margin: calc(var(--scale) * 5); /* Fixed margin between steps */
+    border-radius: calc(var(--scale) * 5); /* Rounded corners */
     background-color: #ccc;
     transition: background-color 0.3s ease;
     cursor: pointer;
 }
 
 .progress-step.active {
-    background-color: #0E4B9A;
+    background-color: #0E4B9A; /* Color when active */
 }
-
