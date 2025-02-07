@@ -15,6 +15,7 @@ import QuestionPet from './components/QuestionPet';
 import Answer from './components/Answer';
 import AnswerVerticalSection from './components/AnswerVerticalSection';
 import Progress from './components/Progress';
+import Info from './components/Info';
 
 // These Sidebars were split into separate components 
 // but I combined them into one SidebarCombined component
@@ -96,6 +97,14 @@ function App() {
             questionText="В коя област живеете?"
           />
           <QuestionBG/>
+          <Info
+            color="blue"
+            text="
+              Можете да изберете вашата област като натиснете върху бутона 'Изберете...'. За да отбележите, кликнете върху предложените опции.
+              За да смените вашия отговор - повторете.
+            "
+            video={require("./images/videos/area-tutorial.mp4")}
+          />
         </>
       ),
       answerProps: {
