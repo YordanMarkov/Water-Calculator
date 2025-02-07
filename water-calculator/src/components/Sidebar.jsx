@@ -16,12 +16,20 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
         <span className="faded">ВиК инсталация</span>
       </p>
       <div className="items">
+        {/* Map Icon */}
+        <img
+          className={`item ${currentQuestionIndex === 1 ? 'active' : ''}`}
+          src={require("../images/icons/map.svg").default}
+          alt="map"
+          onClick={() => handleNavigation(1)}
+        />
+
         {/* Home Icon */}
         <img
-          className={`item ${currentQuestionIndex === 0 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 2 ? 'active' : ''}`}
           src={require("../images/icons/home.svg").default}
           alt="home"
-          onClick={() => handleNavigation(0)}
+          onClick={() => handleNavigation(2)}
         />
         
         {/* Bath Icon with Sub-options */}
@@ -30,14 +38,14 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
           onMouseLeave={() => setShowBathCircles(false)} // Hide circles on hover out
         >
           <img
-            className={`item ${[1, 2, 3, 4, 5].includes(currentQuestionIndex) ? 'active' : ''}`}
+            className={`item ${[3, 4, 5, 6, 7].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/bath.svg").default}
             alt="bath"
-            onClick={() => handleNavigation(1)}
+            onClick={() => handleNavigation(3)}
           />
           {/* Sub-circles for bath options */}
           <div className={`circles ${showBathCircles ? 'expanded' : ''}`}>
-            {[1, 2, 3, 4, 5].map((index) => (
+            {[3, 4, 5, 6, 7].map((index) => (
               <img
                 key={index}
                 className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}
@@ -51,10 +59,10 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
 
         {/* Toilet Icon */}
         <img
-          className={`item ${currentQuestionIndex === 6 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 8 ? 'active' : ''}`}
           src={require("../images/icons/toilet.svg").default}
           alt="toilet"
-          onClick={() => handleNavigation(6)}
+          onClick={() => handleNavigation(8)}
         />
         
         {/* Sink Icon with Sub-options */}
@@ -63,14 +71,14 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
           onMouseLeave={() => setShowSinkCircles(false)} // Hide circles on hover out
         >
           <img
-            className={`item ${[7, 8].includes(currentQuestionIndex) ? 'active' : ''}`}
+            className={`item ${[9, 10].includes(currentQuestionIndex) ? 'active' : ''}`}
             src={require("../images/icons/sink.svg").default}
             alt="sink"
-            onClick={() => handleNavigation(7)}
+            onClick={() => handleNavigation(9)}
           />
           {/* Sub-circles for sink options */}
           <div className={`circles ${showSinkCircles ? 'expanded' : ''}`}>
-            {[7, 8].map((index) => (
+            {[9, 10].map((index) => (
               <img
                 key={index}
                 className={`circle ${currentQuestionIndex === index ? 'active' : ''}`}
@@ -84,22 +92,22 @@ function Sidebar({ currentQuestionIndex, setCurrentQuestionIndex }) {
 
         {/* Other static icons */}
         <img
-          className={`item ${currentQuestionIndex === 9 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 11 ? 'active' : ''}`}
           src={require("../images/icons/dish.svg").default}
           alt="dish"
-          onClick={() => handleNavigation(9)}
+          onClick={() => handleNavigation(11)}
         />
         <img
-          className={`item ${currentQuestionIndex === 10 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 12 ? 'active' : ''}`}
           src={require("../images/icons/washingmachine.svg").default}
           alt="washingmachine"
-          onClick={() => handleNavigation(10)}
+          onClick={() => handleNavigation(12)}
         />
         <img
-          className={`item ${currentQuestionIndex === 11 ? 'active' : ''}`}
+          className={`item ${currentQuestionIndex === 13 ? 'active' : ''}`}
           src={require("../images/icons/graywater.svg").default}
           alt="graywater"
-          onClick={() => handleNavigation(11)}
+          onClick={() => handleNavigation(13)}
         />
       </div>
     </div>

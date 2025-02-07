@@ -89,12 +89,17 @@ function App() {
     {
       component: (
         <>
-
+          <Title
+            iconPath={require("./images/icons/map.svg").default}
+            titleText="Но първо..."
+            lineColor={require("./images/lines/blue.svg").default}
+            questionText="В коя област живеете?"
+          />
+          <QuestionBG/>
         </>
       ),
       answerProps: {
-        isTherePrev: false,
-        isThereNext: false,
+        isThereNext: true,
         buttonTitles: [],
       },
     },
@@ -112,7 +117,7 @@ function App() {
         </>
       ),
       answerProps: {
-        isTherePrev: false,
+        isTherePrev: true,
         isThereNext: true,
         buttonTitles: [],
       },
@@ -593,27 +598,27 @@ function App() {
         isPurple: true,
       },
     },
-    // Question 22
-    {
-      component: (
-        <>
-          <Title
-            iconPath={require("./images/icons/bulb.svg").default}
-            titleText="Електричество"
-            lineColor={require("./images/lines/purple.svg").default}
-            questionText="В коя област живеете?"
-            isPurple={true}
-          />
-          <QuestionBG/>
-        </>
-      ),
-      answerProps: {
-        isTherePrev: true,
-        isThereNext: true,
-        buttonTitles: [],
-        isPurple: true,
-      },
-    },
+    // Question 22 - NO LONGER HERE! MOVED TO BEING THE FIRST QUESTION!
+    // {
+    //   component: (
+    //     <>
+    //       <Title
+    //         iconPath={require("./images/icons/bulb.svg").default}
+    //         titleText="Електричество"
+    //         lineColor={require("./images/lines/purple.svg").default}
+    //         questionText="В коя област живеете?"
+    //         isPurple={true}
+    //       />
+    //       <QuestionBG/>
+    //     </>
+    //   ),
+    //   answerProps: {
+    //     isTherePrev: true,
+    //     isThereNext: true,
+    //     buttonTitles: [],
+    //     isPurple: true,
+    //   },
+    // },
     // Question 23
     {
       component: (
@@ -894,7 +899,12 @@ function App() {
             goBack={goBack}
           />
         </>
-      )
+      ),
+      answerProps: {
+        isTherePrev: false,
+        isThereNext: false,
+        buttonTitles: [],
+      },
     }
   ];  
 
@@ -902,13 +912,13 @@ function App() {
 
   useEffect(() => {
     // Change background color based on question index
-    if (currentQuestionIndex >= 0 && currentQuestionIndex <= 11) {
+    if (currentQuestionIndex >= 0 && currentQuestionIndex <= 13) {
       document.body.style.backgroundColor = '#E1F1FE';
-    } else if (currentQuestionIndex >= 12 && currentQuestionIndex <= 19) {
+    } else if (currentQuestionIndex >= 14 && currentQuestionIndex <= 21) {
       document.body.style.backgroundColor = '#E1FEED';
-    } else if (currentQuestionIndex >= 20 && currentQuestionIndex <= 32) {
+    } else if (currentQuestionIndex >= 22 && currentQuestionIndex <= 33) {
       document.body.style.backgroundColor = '#E1E4FE';
-    } else if (currentQuestionIndex === 33) {
+    } else if (currentQuestionIndex === 34) {
       document.body.style.backgroundColor = '#E1F1FE';
     }
 
@@ -936,7 +946,7 @@ function App() {
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
       
       {/* Show sidebar if not on the last question (which is the result page) */}
-      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0 && currentQuestionIndex !== 1) && (
+      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0) && (
         <SidebarCombined
           currentQuestionIndex={currentQuestionIndex}
           setCurrentQuestionIndex={setCurrentQuestionIndex}
@@ -958,7 +968,7 @@ function App() {
         onOptionClick={handleOptionClick} // Option click handler
       />
       {/* Render the progress bar if not on the last question (which is the result page) */}
-      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0 && currentQuestionIndex !== 1) && (
+      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0) && (
         <Progress 
           currentQuestionIndex={currentQuestionIndex} 
           setCurrentQuestionIndex={setCurrentQuestionIndex}
