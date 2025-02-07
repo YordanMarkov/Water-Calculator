@@ -76,8 +76,8 @@
 
 .info-text {
     color: white;
-    font-size: calc(var(--scale) * 24);
-    text-align: justify;
+    font-size: calc(var(--scale) * 20);
+    text-align: center;
     width: 80%;
     margin-top: calc(var(--scale) * 20);
 }

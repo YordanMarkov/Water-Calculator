@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Info.css";
 
-function Info({ color, text, video }) {
+function Info({ color, text, video, image }) {
   const [isOpen, setIsOpen] = useState(false);
   const [animateOpen, setAnimateOpen] = useState(false);
 
@@ -55,10 +55,13 @@ function Info({ color, text, video }) {
         >
           <p className="info-title">Информационно табло</p>
           <p className="info-text">{text}</p>
-          {video && (
+          {video && !image && (
             <video className="info-video" autoPlay loop muted playsInline>
               <source src={video} type="video/mp4" />
             </video>
+          )}
+          {image && !video && (
+            <img className="info-video" src={image} alt="Info content" />
           )}
         </div>
       )}
