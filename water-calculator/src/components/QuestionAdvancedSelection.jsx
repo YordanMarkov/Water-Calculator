@@ -1,5 +1,6 @@
 import './QuestionAdvancedSelection.css';
 import { useState } from 'react';
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSrc, isGreen = false }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -9,7 +10,7 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
   // Add an option to selected options
   const handleSelect = (option) => {
     if (!selectedOptions.some(item => item.option === option)) {
-      setSelectedOptions([...selectedOptions, { option, times: 0, periodIndex: 0 }]);
+      setSelectedOptions([...selectedOptions, { option, times: 0, period: '' }]); // Initialize period as ''
     }
   };
 
@@ -24,15 +25,12 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
     }));
   };
 
-  // Change the period (e.g., day, week)
-  const handlePeriodChange = (option, operation) => {
+  // Change the period using the Select dropdown
+  const handlePeriodChange = (option, event) => {
+    const newPeriod = event.target.value;
     setSelectedOptions(selectedOptions.map(item => {
       if (item.option === option) {
-        const newIndex =
-          operation === "increase"
-            ? Math.min(item.periodIndex + 1, periods.length - 1)
-            : Math.max(item.periodIndex - 1, 0);
-        return { ...item, periodIndex: newIndex };
+        return { ...item, period: newPeriod }; // Update period directly
       }
       return item;
     }));
@@ -94,21 +92,56 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
                     alt="plus"
                     onClick={() => handleTimesChange(option, "increase")}
                   />
-                  <span className="period-label">път(и) на</span>
-                  {/* Adjust period */}
-                  <img
-                    className={`operational-sign minus ${selectedOptions.find(item => item.option === option).periodIndex === 0 ? "disabled" : ""}`}
-                    src={require("../images/all/minus.svg").default}
-                    alt="minus period"
-                    onClick={() => handlePeriodChange(option, "decrease")}
-                  />
-                  <span className="period">{periods[selectedOptions.find(item => item.option === option).periodIndex]}</span>
-                  <img
-                    className={`operational-sign plus ${selectedOptions.find(item => item.option === option).periodIndex === periods.length - 1 ? "disabled" : ""}`}
-                    src={require("../images/all/plus.svg").default}
-                    alt="plus period"
-                    onClick={() => handlePeriodChange(option, "increase")}
-                  />
+                  <span className="period-label">{selectedOptions.find(item => item.option === option).times === 1 ? "път" : "пъти"} на</span>
+                  {/* Period selection dropdown */}
+                  <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
+                    <InputLabel
+                      sx={{
+                        fontSize: 'calc(var(--scale) * 25)',
+                        fontFamily: 'Comfortaa, sans-serif',
+                        color: 'white',
+                        textAlign: 'center',
+                        width: 'calc(var(--scale) * 424)',
+                        opacity: selectedOptions.find(item => item.option === option).period === '' ? 1 : 0,
+                        transition: 'opacity 0.3s ease',
+                      }}
+                      shrink={selectedOptions.find(item => item.option === option).period !== ''}
+                    >
+                      Изберете...
+                    </InputLabel>
+                    <Select
+                      value={selectedOptions.find(item => item.option === option).period}
+                      onChange={(e) => handlePeriodChange(option, e)}
+                      sx={{
+                        backgroundColor: isGreen ? '#1D4C1C' : '#1C274C',
+                        width: 'calc(var(--scale) * 224)',
+                        borderRadius: 'calc(var(--scale) * 30)',
+                        color: 'white',
+                        fontSize: 'calc(var(--scale) * 25)',
+                        fontFamily: 'Comfortaa, sans-serif',
+                        textAlign: 'center',
+                        transition: '0.3s opacity',
+                        '.MuiSelect-icon': {
+                          color: 'white',
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: 'none',
+                        },
+                        '&:hover': {
+                          opacity: 0.8,
+                          transition: '0.3s opacity',
+                        },
+                        '& .MuiSelect-select': {
+                          paddingLeft: 0,
+                          paddingRight: 0,
+                        },
+                      }}
+                    >
+                      {periods.map((period, index) => (
+                        <MenuItem key={index} value={period}>{period}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </div>
               )}
             </div>

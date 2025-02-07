@@ -174,15 +174,15 @@ function App() {
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Вана"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Ползвате ли вана? Ако да, колко често?"
+            questionText="Колко често използвате вана?"
           />
           <QuestionBath />
         </>
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
-        buttonTitles: [],
+        isThereNext: false,
+        buttonTitles: ["Не използвам!"],
       },
     },
     // Question 5
@@ -311,7 +311,7 @@ function App() {
             options={[
               "Обикновена съдомиялна",
               "Енерго/Водоефективна съдомиялна",
-              "На ръка",
+              "На ръка ",
               "Хвърлям ги / Не ям вкъщи",
             ]}
             questionCount={4}

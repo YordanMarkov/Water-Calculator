@@ -31,7 +31,31 @@
 
 .plus-minus-menu {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(var(--scale) * 280);
+}
+
+.i-use, .times-for {
+    font-size: calc(var(--scale) * 48);
+    text-align: center;
+}
+
+.input-field-bath {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc(var(--scale) * 160);
+}
+
+.input-field-bath > * {
+    margin-bottom: calc(var(--scale) * 20); 
+}
+
+.input-field-bath > *:nth-child(1) {
+    margin-bottom: calc(var(--scale) * -10);
+}
+
+.input-field-bath > *:nth-child(2) {
+    margin-bottom: calc(var(--scale) * -60);
 }
