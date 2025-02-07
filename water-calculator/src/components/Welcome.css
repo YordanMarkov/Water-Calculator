@@ -1,0 +1,56 @@
+@import url('../index.css');
+
+.welcome-container {
+    position: absolute;
+}
+
+.welcome-background {
+    position: absolute;
+    width: calc(var(--scale) * 1920);
+    top: calc(var(--scale) * -16);
+    left: calc(var(--scale) * -8);
+}
+
+.voden-calc {
+    position: absolute;
+    width: calc(var(--scale) * 460);
+    top: calc(var(--scale) * 40);
+    left: calc(var(--scale) * 700);
+}
+
+.welcome-start {
+    position: absolute;
+    width: calc(var(--scale) * 177);
+    height: calc(var(--scale) * 71);
+    top: calc(var(--scale) * 340);
+    left: calc(var(--scale) * 842);
+    border-radius: calc(var(--scale) * 30);
+    background-color: #ffc464b7;
+    color: white;
+    font-size: calc(var(--scale) * 32);
+    border: none;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.welcome-start:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.welcome-clouds {
+    position: absolute;
+    top: calc(var(--scale) * -240);
+}
+
+.cloud-3-welcome {
+    position: absolute;
+    width: calc(var(--scale) * 250);
+}
+
+.cloud-3-welcome {
+    top: calc(var(--scale) * 101);
+    left: calc(var(--scale) * 450);
+    animation: move-cloud-3 20s infinite ease-out 0.5s;
+    z-index: -1;
+}

@@ -25,6 +25,7 @@ import Progress from './components/Progress';
 
 import SidebarCombined from './components/SidebarCombined';
 import Results from './components/Results';
+import Welcome from './components/Welcome';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -58,10 +59,45 @@ function App() {
     setCurrentQuestionIndex(0); // Reset to start
   };
 
+  // Go to the second question
+  const goNext = () => {
+    setCurrentQuestionIndex(1); //
+  };
 
   // List of all questions in the Water Calculator
   // All of them are components with different props
   const questions = [
+    // Welcome
+    {
+      component: (
+        <>
+          <Title
+            iconPath={require("./images/icons/welcome.svg").default}
+            titleText="Добре дошли"
+            lineColor={require("./images/lines/blue.svg").default}
+          />
+          <Welcome goNext={goNext}/>
+        </>
+      ),
+      answerProps: {
+        isTherePrev: false,
+        isThereNext: false,
+        buttonTitles: [],
+      },
+    },
+    // Where?
+    {
+      component: (
+        <>
+
+        </>
+      ),
+      answerProps: {
+        isTherePrev: false,
+        isThereNext: false,
+        buttonTitles: [],
+      },
+    },
     // Question 1
     {
       component: (
@@ -858,12 +894,7 @@ function App() {
             goBack={goBack}
           />
         </>
-      ),
-      answerProps: {
-        isTherePrev: false,
-        isThereNext: false,
-        buttonTitles: [],
-      },
+      )
     }
   ];  
 
@@ -905,7 +936,7 @@ function App() {
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
       
       {/* Show sidebar if not on the last question (which is the result page) */}
-      {currentQuestionIndex !== 33 && (
+      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0 && currentQuestionIndex !== 1) && (
         <SidebarCombined
           currentQuestionIndex={currentQuestionIndex}
           setCurrentQuestionIndex={setCurrentQuestionIndex}
@@ -927,7 +958,7 @@ function App() {
         onOptionClick={handleOptionClick} // Option click handler
       />
       {/* Render the progress bar if not on the last question (which is the result page) */}
-      {currentQuestionIndex !== 33 && (
+      {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0 && currentQuestionIndex !== 1) && (
         <Progress 
           currentQuestionIndex={currentQuestionIndex} 
           setCurrentQuestionIndex={setCurrentQuestionIndex}
