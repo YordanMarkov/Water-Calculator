@@ -7,55 +7,41 @@ function Answer({
   goToNext, 
   goToPrev, 
   onOptionClick, 
+  answerIndex, 
   isGreen, 
-  isPurple,
+  isPurple 
 }) {
-  // Set button background color based on props (sections - blue, green, purple)
   const buttonStyle = {
-    backgroundColor: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '',
-  };
-
-  const nextButtonStyle = {
     backgroundColor: isPurple ? '#6C4CFF' : isGreen ? '#119A0E' : '',
   };
 
   return (
     <div className="buttons">
-      {/* Previous button if allowed */}
+      {/* Previous button */}
       {isTherePrev && (
         <img
           className="prev"
-          src={require(
-            isPurple 
-              ? "../images/all/prev-purple.svg" // Purple style
-              : isGreen 
-              ? "../images/all/prev-green.svg" // Green style
-              : "../images/all/prev.svg" // Default style
-          ).default}
+          src={require(isPurple ? "../images/all/prev-purple.svg" : isGreen ? "../images/all/prev-green.svg" : "../images/all/prev.svg").default}
           alt="prev"
-          onClick={goToPrev} // Go to previous question
+          onClick={goToPrev}
         />
       )}
 
-      {/* Render buttons with titles */}
-      {buttonTitles.map((title, index) => (
+      {/* Render buttons if there are predefined answer choices */}
+      {buttonTitles.length > 0 && buttonTitles.map((title, index) => (
         <button
           key={index}
           className="button"
-          onClick={onOptionClick} // Handle option click
+          onClick={() => onOptionClick(answerIndex, title)} // Auto-progress for multiple choice
           style={buttonStyle}
         >
           {title}
         </button>
       ))}
 
-      {/* Next button if allowed */}
-      {isThereNext && (
-        <button
-          className="next"
-          onClick={goToNext} // Go to next question
-          style={nextButtonStyle}
-        >
+      {/* Next button for manual-progressing questions (e.g., sliders) */}
+      {isThereNext && buttonTitles.length === 0 && (
+        <button className="next" onClick={goToNext} style={buttonStyle}>
           Напред
         </button>
       )}

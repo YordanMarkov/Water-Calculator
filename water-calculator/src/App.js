@@ -31,6 +31,18 @@ import Welcome from './components/Welcome';
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
+  // Warn the user that the changes may not be saved
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Required for Chrome, but ignored by most modern browsers
+    };
+  
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);  
+  
+
   // Go to the next question
   const goToNextQuestion = () => {
     if (
@@ -49,9 +61,17 @@ function App() {
   };
 
   // On option click, go to the next question
-  const handleOptionClick = () => {
-    if (currentQuestionIndex < questions.length - 1) { // Not the last question
-      setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to next
+  const handleOptionClick = (answerIndex, answer) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[answerIndex] = { answer }; // Save answer to correct index
+      console.log(answers);
+      return updatedAnswers;
+    });
+  
+    // Move to the next question automatically
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
@@ -63,6 +83,62 @@ function App() {
   // Go to the second question
   const goNext = () => {
     setCurrentQuestionIndex(1); //
+  };
+
+  const [answers, setAnswers] = useState([
+    { area: "" },
+    { people: null },
+    { answer: null },
+    { answer: null },
+    { times: 0, period: "" }, // Store both values for Question 4
+    { answer: null },
+    { answer: null },
+    { answer: null },
+    { answer: null },
+    { answer: null },
+    [
+      { option: 1, times: 0, period: "" },
+      { option: 2, times: 0, period: "" },
+      { option: 3, times: 0, period: "" },
+      { option: 4, times: 0, period: "" }
+    ],
+    [
+      { option: 1, times: 0, period: "" },
+      { option: 2, times: 0, period: "" },
+      { option: 3, times: 0, period: "" },
+      { option: 4, times: 0, period: "" }
+    ],  
+  ]);
+
+  // Function to update bath usage answer
+  const updateBathUsage = (times, period) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[4] = { times, period }; // Save both values
+      console.log(answers[4]);
+      return updatedAnswers;
+    });
+  };
+  
+
+  // Function to update people selection
+  const updatePeople = (newPeople) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers]; // Copy array
+      updatedAnswers[1].people = newPeople; // Modify value
+      console.log(answers[1]);
+      return updatedAnswers;
+    });
+  };
+
+  // Function to update area selection
+  const updateArea = (newArea) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers]; // Copy array
+      updatedAnswers[0].area = newArea; // Modify value
+      console.log(answers[0]);
+      return updatedAnswers;
+    });
   };
 
   // List of all questions in the Water Calculator
@@ -86,7 +162,7 @@ function App() {
         buttonTitles: [],
       },
     },
-    // Where?
+    // Where? (Question 0)
     {
       component: (
         <>
@@ -96,7 +172,7 @@ function App() {
             lineColor={require("./images/lines/blue.svg").default}
             questionText="В коя област живеете?"
           />
-          <QuestionBG/>
+          <QuestionBG selectedArea={answers[0].area} onAreaChange={updateArea} />
           <Info
             color="blue"
             text="
@@ -108,7 +184,7 @@ function App() {
         </>
       ),
       answerProps: {
-        isThereNext: true,
+        isThereNext: answers[0].area !== "", // Hide "Next" if no selection
         buttonTitles: [],
       },
     },
@@ -122,7 +198,7 @@ function App() {
             lineColor={require("./images/lines/blue.svg").default}
             questionText="С колко души споделяте вашия дом?"
           />
-          <QuestionPeople />
+          <QuestionPeople selectedPeople={answers[1].people} onPeopleChange={updatePeople} />
           <Info
             color="blue"
             text="
@@ -159,6 +235,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['<5 минути', '5-10 минути', '11-15 минути', '>15 минути'],
+        answerIndex: 2, // Save to answers[2]
       },
     },
     // Question 3
@@ -193,6 +270,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Някои'],
+        answerIndex: 3, // Save to answers[3]
       },
     },
     // Question 4
@@ -205,7 +283,11 @@ function App() {
             lineColor={require("./images/lines/blue.svg").default}
             questionText="Колко често използвате вана?"
           />
-          <QuestionBath />
+          <QuestionBath
+            selectedTimes={answers[4].times} // Pass stored value
+            selectedPeriod={answers[4].period} // Pass stored value
+            onBathUsageChange={updateBathUsage} // Handle changes
+          />
           <Info
             color="blue"
             text="
@@ -221,8 +303,8 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: false,
-        buttonTitles: ["Не използвам!"],
+        isThereNext: answers[4].times > 0 && answers[4].period !== "", // Show "Next" only if BOTH conditions are met
+        buttonTitles: (answers[4].times === 0 || answers[4].period === "") ? ["Не използвам!"] : [], // Show "Не използвам!" only if one of them is missing
       },
     },
     // Question 5
@@ -245,6 +327,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['<5 минути', '5-10 минути', '11-30 минути', '>30 минути'],
+        answerIndex: 5, // Save to answers[5]
       },
     },
     // Question 6
@@ -279,6 +362,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Някои'],
+        answerIndex: 6, // Save to answers[6]
       },
     },
     // Question 7
@@ -303,6 +387,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Някои'],
+        answerIndex: 7, // Save to answers[7]
       },
     },
     // Question 8
@@ -325,6 +410,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['<5 минути', '5-20 минути', '21-45 минути', '>45 минути'],
+        answerIndex: 8, // Save to answers[8]
       },
     },
     // Question 9
@@ -358,6 +444,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
+        answerIndex: 9, // Save to answers[9]
       },
     },
     // Question 10
@@ -473,6 +560,7 @@ function App() {
         isTherePrev: true,
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
+        answerIndex: 12, // Save to answers[12]
       },
     },
     // Outdoor Water
@@ -1134,6 +1222,7 @@ function App() {
 
   return (
     <div>
+
       {/* Logo */}
       <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
       

@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import './QuestionBG.css';
 
-function QuestionBG() {
-  const [selectedArea, setSelectedArea] = useState('');
-
-  const handleSelectChange = (event) => {
-    setSelectedArea(event.target.value); // Set selected area value
-  };
-
+function QuestionBG({ selectedArea, onAreaChange }) {
   // List of all Bulgarian areas (области)
-  const area = [
-    "София-град",
-  ];
+  const area = ["София-град"];
 
   // Map of area names to image sources
   const areaImageMap = {
     "София-град": require("../images/all/areas/bg-map-sofia.png"),
   };
 
-  // Function to get the image for the selected area
+  // Get the correct image source based on the selection
   const getImageSource = () => {
     return areaImageMap[selectedArea] || require("../images/all/bg-map.png");
   };
@@ -47,7 +39,7 @@ function QuestionBG() {
         </InputLabel>
         <Select
           value={selectedArea}
-          onChange={handleSelectChange}
+          onChange={(event) => onAreaChange(event.target.value)}
           sx={{
             backgroundColor: '#1C274C',
             width: 'calc(var(--scale) * 424)',
@@ -57,23 +49,12 @@ function QuestionBG() {
             fontFamily: 'Comfortaa, sans-serif',
             textAlign: 'center',
             transition: '0.3s opacity',
-            '.MuiSelect-icon': {
-              color: 'white',
-            },
-            '& .MuiOutlinedInput-notchedOutline': {
-              border: 'none',
-            },
-            '&:hover': {
-              opacity: 0.8,
-              transition: '0.3s opacity',
-            },
-            '& .MuiSelect-select': {
-              paddingLeft: 0,
-              paddingRight: 0,
-            },
+            '.MuiSelect-icon': { color: 'white' },
+            '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+            '&:hover': { opacity: 0.8, transition: '0.3s opacity' },
+            '& .MuiSelect-select': { paddingLeft: 0, paddingRight: 0 },
           }}
         >
-          {/* Render area options */}
           {area.map((area, index) => (
             <MenuItem key={index} value={area}>
               {area}

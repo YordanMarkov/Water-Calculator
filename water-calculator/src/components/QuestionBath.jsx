@@ -2,28 +2,27 @@ import './QuestionBath.css';
 import { useState } from 'react';
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-function QuestionBath() {
-    const [times, setTimes] = useState(0); // Tracks how many times
-    const [period, setPeriod] = useState(''); // Tracks selected period
+function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange }) {
+    const [times, setTimes] = useState(selectedTimes || 0); // Tracks times
+    const [period, setPeriod] = useState(selectedPeriod || ""); // Tracks period
 
-    // Handles increment or decrement of times
+    // Handles increment/decrement of times
     const handleTimesChange = (operation) => {
         setTimes(prevTimes => {
-            if (operation === "increase") {
-                return prevTimes + 1;
-            } else if (operation === "decrease" && prevTimes > 0) {
-                return prevTimes - 1;
-            }
-            return prevTimes;
+            const newTimes = operation === "increase" ? prevTimes + 1 : Math.max(0, prevTimes - 1);
+            onBathUsageChange(newTimes, period); // Update parent state
+            return newTimes;
         });
     };
 
     // Handles period selection change
     const handlePeriodChange = (event) => {
-        setPeriod(event.target.value);
+        const newPeriod = event.target.value;
+        setPeriod(newPeriod);
+        onBathUsageChange(times, newPeriod); // Update parent state
     };
 
-    // Styles disabled buttons
+    // Disable style for decrease button
     const getButtonStyle = (isDisabled) => {
         return isDisabled ? { filter: 'grayscale(100%)', cursor: 'not-allowed' } : {};
     };
@@ -32,22 +31,19 @@ function QuestionBath() {
 
     return (
         <div className="question-bath">
-            {/* Display bathtub image */}
             <img className="bathtub" src={require("../images/all/bath.png")} alt="bathtub" />
-            
+
             <div className="input-field-bath">
                 <p className="i-use">Ползвам вана</p>
                 <div className="plus-minus-menu">
-                    {/* Decrease times */}
                     <img
                         className="operational-sign"
                         src={require("../images/all/minus.svg").default}
                         alt="minus"
                         onClick={() => handleTimesChange("decrease")}
-                        style={times === 0 ? getButtonStyle(true) : {}} // Disable if times is 0
+                        style={times === 0 ? getButtonStyle(true) : {}}
                     />
-                    <p className="times-bath">{times}</p> {/* Display times */}
-                    {/* Increase times */}
+                    <p className="times-bath">{times}</p>
                     <img
                         className="operational-sign"
                         src={require("../images/all/plus.svg").default}
@@ -56,7 +52,8 @@ function QuestionBath() {
                     />
                 </div>
                 <p className="times-for">{times === 1 ? "път" : "пъти"} на</p>
-                {/* Styled Dropdown menu for period selection */}
+
+                {/* Period selection */}
                 <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
                     <InputLabel
                         sx={{
