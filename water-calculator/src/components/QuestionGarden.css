@@ -15,7 +15,7 @@
     width: calc(var(--scale) * 220); 
     overflow-y: auto;
     margin-bottom: calc(var(--scale) * 50); 
-    margin-top: calc(var(--scale) * -20); 
+    margin-top: calc(var(--scale) * -40); 
 }
 
 
@@ -26,4 +26,46 @@
 .value {
     font-size: calc(var(--scale) * 54);
     margin-top: calc(var(--scale) * 10);
+}
+
+.times-garden, .period-garden {
+    font-size: calc(var(--scale) * 48);
+    text-align: center;
+}
+
+.plus-minus-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(var(--scale) * 280);
+}
+
+.i-use, .times-for {
+    font-size: calc(var(--scale) * 48);
+    width: calc(var(--scale) * 230);
+    text-align: center;
+}
+
+.input-field-garden {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: calc(var(--scale) * -50); 
+    margin-bottom: calc(var(--scale) * 10);
+    /* margin-left: calc(var(--scale) * 60);  */
+    background-color: rgba(16, 154, 14, 0.187);
+    border-radius: calc(var(--scale) * 30); 
+    height: calc(var(--scale) * 120);
+    width: calc(var(--scale) * 1260);
+}
+
+.input-field-garden > * {
+    margin-left: calc(var(--scale) * 60); 
+}
+
+.input-field-garden > *:nth-child(4) {
+    margin-left: calc(var(--scale) * 60);
+    margin-right: calc(var(--scale) * 60);
+    margin-top: calc(var(--scale) * 0);
 }

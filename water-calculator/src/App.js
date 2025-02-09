@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Title from './components/Title';
 import QuestionPeople from './components/QuestionPeople';
@@ -98,25 +98,24 @@ function App() {
     { answer: null },
     [ ],
     [ ],  
+    { answer: null },
   ]);
 
-  const updateWashingUsage = (selectedOptions) => {
-    setAnswers((prevAnswers) => {
+  const updateDishUsage = (newSelection) => {
+    setAnswers(prevAnswers => {
       const updatedAnswers = [...prevAnswers];
-      updatedAnswers[11] = [...selectedOptions]; // Fix: Store separately!
+      updatedAnswers[10] = newSelection; // Ensure index 10 gets updated properly
       return updatedAnswers;
     });
   };
   
-
-  const updateDishUsage = useCallback((selectedOptions) => {
-    setAnswers((prevAnswers) => {
+  const updateWashingUsage = (newSelection) => {
+    setAnswers(prevAnswers => {
       const updatedAnswers = [...prevAnswers];
-      updatedAnswers[10] = selectedOptions; // Save selected dishwashing methods
+      updatedAnswers[11] = newSelection; // Ensure index 11 gets updated properly
       return updatedAnswers;
     });
-  }, [setAnswers]);
-  
+  };  
 
   // Function to update bath usage answer
   const updateBathUsage = (times, period) => {
@@ -515,8 +514,8 @@ function App() {
             ]}
             questionCount={4}
             bigImageSrc={require("./images/all/washingmachine.png")}
-            selectedOptions={answers[11]} // ✅ Pass stored washing selections
-            onDishUsageChange={updateWashingUsage} // ✅ Update state when changed
+            selectedOptions={answers[11]}
+            onDishUsageChange={updateWashingUsage} 
           />
           <Info
             color="blue"
@@ -533,7 +532,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: answers[11].some(option => option.times > 0 && option.period !== ""), // ✅ Show "Next" only if valid answer exists
+        isThereNext: answers[11]?.some(option => option.times > 0 && option.period !== ""),
         buttonTitles: [],
       },
     },
@@ -596,6 +595,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
+        answerIndex: 13, // Save to answers[13]
       },
     },
     // Question 14

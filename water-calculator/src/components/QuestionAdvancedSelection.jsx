@@ -7,13 +7,10 @@ function QuestionAdvancedSelection({ options = [], questionCount = 3, bigImageSr
 
   useEffect(() => {
     if (onDishUsageChange && typeof onDishUsageChange === "function") {
-      if (JSON.stringify(localSelectedOptions) !== JSON.stringify(selectedOptions)) {
-        onDishUsageChange(localSelectedOptions);
-      }
+      onDishUsageChange(localSelectedOptions); // Always update answers state
     }
-  }, [localSelectedOptions, selectedOptions, onDishUsageChange]);
-
-
+  }, [localSelectedOptions]); 
+ 
   const periods = ["Ден", "Седмица", "Месец", "Година"];
 
   // Add an option to selected options
