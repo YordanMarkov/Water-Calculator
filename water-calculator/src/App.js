@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './App.css';
 import Title from './components/Title';
 import QuestionPeople from './components/QuestionPeople';
@@ -96,19 +96,27 @@ function App() {
     { answer: null },
     { answer: null },
     { answer: null },
-    [
-      { option: 1, times: 0, period: "" },
-      { option: 2, times: 0, period: "" },
-      { option: 3, times: 0, period: "" },
-      { option: 4, times: 0, period: "" }
-    ],
-    [
-      { option: 1, times: 0, period: "" },
-      { option: 2, times: 0, period: "" },
-      { option: 3, times: 0, period: "" },
-      { option: 4, times: 0, period: "" }
-    ],  
+    [ ],
+    [ ],  
   ]);
+
+  const updateWashingUsage = (selectedOptions) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[11] = [...selectedOptions]; // Fix: Store separately!
+      return updatedAnswers;
+    });
+  };
+  
+
+  const updateDishUsage = useCallback((selectedOptions) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[10] = selectedOptions; // Save selected dishwashing methods
+      return updatedAnswers;
+    });
+  }, [setAnswers]);
+  
 
   // Function to update bath usage answer
   const updateBathUsage = (times, period) => {
@@ -305,6 +313,7 @@ function App() {
         isTherePrev: true,
         isThereNext: answers[4].times > 0 && answers[4].period !== "", // Show "Next" only if BOTH conditions are met
         buttonTitles: (answers[4].times === 0 || answers[4].period === "") ? ["Не използвам!"] : [], // Show "Не използвам!" only if one of them is missing
+        answerIndex: 4, // Save to answers[4]
       },
     },
     // Question 5
@@ -466,16 +475,16 @@ function App() {
             ]}
             questionCount={4}
             bigImageSrc={require("./images/all/dish.png")}
+            selectedOptions={answers[10]} // Pass stored selections
+            onDishUsageChange={updateDishUsage} // Function to update answers
           />
           <Info
             color="blue"
             text="
               Можете да изберете всички отговори, които отговарят във вашия случай.
               За да изберете колко често си миете съдовете по избраните от вас начини, 
-              използвайте знаците + (плюс) и - (минус), за да регулирате честотата. За да изберете период, използвайте
-              менюто и предложените опции. Ако сте си променили решението, можете
-              винаги да го смените, като повторите процеса. За да се откажете от
-              даден отговор, винаги можете да го затворите с червения бутон вляво.
+              използвайте знаците + (плюс) и - (минус), за да регулирате честотата.
+              Ако сте си променили решението, можете винаги да го смените.
             "
             video={require("./images/videos/dish-tutorial.mp4")}
           />
@@ -483,7 +492,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
+        isThereNext: answers[10].some(option => option.times > 0 && option.period !== ""), // Show "Next" only if valid answers exist
         buttonTitles: [],
       },
     },
@@ -506,16 +515,17 @@ function App() {
             ]}
             questionCount={4}
             bigImageSrc={require("./images/all/washingmachine.png")}
+            selectedOptions={answers[11]} // ✅ Pass stored washing selections
+            onDishUsageChange={updateWashingUsage} // ✅ Update state when changed
           />
           <Info
             color="blue"
             text="
               Можете да изберете всички отговори, които отговарят във вашия случай.
               За да изберете колко често си перете по избраните от вас начини, 
-              използвайте знаците + (плюс) и - (минус), за да регулирате честотата. За да изберете период, използвайте
-              менюто и предложените опции. Ако сте си променили решението, можете
-              винаги да го смените, като повторите процеса. За да се откажете от
-              даден отговор, винаги можете да го затворите с червения бутон вляво.
+              използвайте знаците + (плюс) и - (минус), за да регулирате честотата.
+              За да изберете период, използвайте менюто и предложените опции.
+              Ако сте си променили решението, можете винаги да го смените.
             "
             video={require("./images/videos/wash-tutorial.mp4")}
           />
@@ -523,7 +533,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
+        isThereNext: answers[11].some(option => option.times > 0 && option.period !== ""), // ✅ Show "Next" only if valid answer exists
         buttonTitles: [],
       },
     },
