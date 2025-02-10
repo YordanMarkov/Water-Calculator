@@ -8,7 +8,7 @@ function AnswerVerticalSection({ questions, goToNext }) {
         <button 
           key={index} // Unique key for each button
           className="vertical-button"
-          onClick={goToNext} // Go to the next question
+          onClick={() => goToNext(index, question)} // Pass button text as answerText
         >
           {question} {/* Display question text */}
         </button>

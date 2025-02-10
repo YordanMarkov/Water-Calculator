@@ -121,6 +121,15 @@ function App() {
     { answer: null }, // 32
   ]);
 
+  // Pet
+  const updatePetValue = (newValue) => {
+    setAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[30] = { lv: newValue }; // Save the new pet value to index 30
+      return updatedAnswers;
+    });
+  };
+
   // Omni
   const updateOmnivoreFrequency = (newFoodValues) => {
     setAnswers(prevAnswers => {
@@ -1245,7 +1254,7 @@ function App() {
             questionText="Какъв бюджет заделяте, за да закупите храна за вашите домашни любимци?"
             isPurple={true}
           />
-          <QuestionPet/>
+          <QuestionPet updatePetValue={updatePetValue} />
           <Info
             color="purple"
             text=" 
@@ -1279,7 +1288,7 @@ function App() {
           />
           <AnswerVerticalSection 
             questions={['Как да пестя вода', 'Да помогна на природата', 'Пестене на пари', 'Да си разбера водния отпечатък']} 
-            goToNext={handleOptionClick}
+            goToNext={(answerIndex, answerText) => handleOptionClick(31, answerText)} // Pass the answer text (button title)
           />
         </>
       ),
@@ -1303,7 +1312,7 @@ function App() {
           />
           <AnswerVerticalSection 
             questions={['За вътрешната ВиК система', 'За външната ВиК система', 'За виртуалната ВиК система']} 
-            goToNext={handleOptionClick}
+            goToNext={(answerIndex, answerText) => handleOptionClick(32, answerText)} // Pass the answer text (button title)
           />
         </>
       ),
@@ -1320,6 +1329,7 @@ function App() {
         <>
           <Results
             goBack={goBack}
+            answers={answers}
           />
         </>
       ),

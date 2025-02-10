@@ -1,6 +1,6 @@
 import './Results.css';
 
-function Results({goBack}) {
+function Results({goBack, answers}) {
   // IMPORTANT: This component is static! Nothing is functional behind and the calculations
   // are completely made up. The purpose of this component is to show how the final results
   // would look like in the app!
@@ -34,7 +34,13 @@ function Results({goBack}) {
           {/* Image showing Sofia area */}
           <img className="results-image-area" src={require("../images/all/sofia-city.svg").default} alt="Sofia" />
         </div>
+        {/* Just testing */}
+        {/* <div className="results-advanced-container">
+          <pre className="results-text">{JSON.stringify(answers, null, 2)}</pre>
+        </div> */}
       </div>
+
+      
       
       {/* Clouds section */}
       <div className="clouds">
