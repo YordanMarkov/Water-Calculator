@@ -85,7 +85,7 @@ function QuestionGarden({ onGardenUsageChange, selectedTimes, selectedPeriod }) 
       <p className="value">{marks.find((mark) => mark.value === value)?.label}</p>
 
       <div className="input-field-garden">
-        <p className="i-use">Поливам</p>
+        <p className="i-use-garden">Поливам</p>
         <div className="plus-minus-menu">
           <img
             className="operational-sign"
@@ -102,7 +102,7 @@ function QuestionGarden({ onGardenUsageChange, selectedTimes, selectedPeriod }) 
             onClick={() => handleTimesChange("increase")}
           />
         </div>
-        <p className="times-for">{times === 1 ? "път" : "пъти"} на</p>
+        <p className="times-for-garden">{times === 1 ? "път" : "пъти"} на</p>
 
         {/* Period selection */}
         <FormControl sx={{ minWidth: 200, marginTop: 2 }}>

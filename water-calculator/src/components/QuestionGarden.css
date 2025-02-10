@@ -41,7 +41,7 @@
     width: calc(var(--scale) * 280);
 }
 
-.i-use, .times-for {
+.i-use-garden, .times-for-garden {
     font-size: calc(var(--scale) * 48);
     width: calc(var(--scale) * 230);
     text-align: center;
