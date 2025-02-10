@@ -348,7 +348,7 @@ function Results({goBack, answers}) {
     const paperMap = {
       'Да': 15,
       'Не': 0,
-      'Някои': 5
+      'Понякога': 5
     };
 
     newTotal -= paperMap[answers[24].answer];
@@ -362,7 +362,7 @@ function Results({goBack, answers}) {
     const plasticMap = {
       'Да': 62.5,
       'Не': 0,
-      'Някои': 31
+      'Понякога': 31
     };
 
     newTotal -= plasticMap[answers[25].answer];
@@ -376,7 +376,7 @@ function Results({goBack, answers}) {
     const bottlesMap = {
       'Да': 100,
       'Не': 0,
-      'Някои': 50
+      'Понякога': 50
     };
 
     newTotal -= bottlesMap[answers[26].answer];
@@ -390,7 +390,7 @@ function Results({goBack, answers}) {
     const fabricMap = {
       'Да': 21,
       'Не': 0,
-      'Някои': 11.5
+      'Понякога': 11.5
     };
 
     newTotal -= fabricMap[answers[27].answer];
