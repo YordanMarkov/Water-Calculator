@@ -179,7 +179,7 @@ function Results({goBack, answers}) {
     }
     
     for(let i = 0; i < answers[10].length; i++) {
-      newTotal += dishMap[answers[10][i].option] * answers[10][i].times * periodMap[answers[10][i].period];
+      newTotal += dishMap[answers[10][i].option] * answers[10][i].times * periodMap[answers[10][i].period]/people;
     }
     console.log("Dish " + newTotal);
 
@@ -188,7 +188,7 @@ function Results({goBack, answers}) {
     // if answer:
     // normal washing -> 41
     // efficient washing -> 75.7
-    // hand -> 10
+    // hand -> 245 // made up
     // wash out -> 53
     // period selected per answer:
     // per day -> 1
@@ -197,14 +197,14 @@ function Results({goBack, answers}) {
     // per year -> 1/365
     // total += normal washing * period * times + efficient washing * period * times + hand * period * times + wash out * period * times
     const washMap = {
-      'Обикновена пералня': 41,
+      'Обикновена пералня': 155,
       'Енерго/Водоефективна пералня': 75.7,
-      'На ръка': 10,
+      'На ръка': 245,
       'Обществена пералня / Друго': 53
     }
 
     for(let i = 0; i < answers[11].length; i++) {
-      newTotal += (washMap[answers[11][i].option] || 0) * answers[11][i].times * periodMap[answers[11][i].period];
+      newTotal += (washMap[answers[11][i].option] || 0) * answers[11][i].times * periodMap[answers[11][i].period]/people;
     }
     console.log("Washing " + newTotal);
 
@@ -212,7 +212,7 @@ function Results({goBack, answers}) {
     // yes -> 0
     // no -> -1
     // total += graywater*people*90
-    newTotal += (answers[12].answer === 'Да' ? 0 : -1) * people * 90;
+    newTotal += (answers[12].answer === 'Да' ? -1 : 0) * people * 90;
     console.log("Graywater " + newTotal);
 
     // if there is a garden to water, we check the answers for how often (and big), cactus plants
@@ -315,15 +315,15 @@ function Results({goBack, answers}) {
     console.log("Car " + newTotal);
 
     // Car km
-    // total += answer / 0.6 / people
+    // total += answer / 0.6 / people / 7 <- to calc the day from a week
     // const ranges = [0, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500];
-    newTotal += (answers[21].value + 150) / 0.6 / people;
+    newTotal += (answers[21].value + 150) / 0.6 / people / 7;
     console.log("Car km " + newTotal);
 
     // El
     // I am putting myself an example for water consumption: 113
     // total += el * 113
-    newTotal += answers[22].el * 113;
+    newTotal += answers[22].el * 113 / 100;
     console.log("El " + newTotal);
 
     // Shopping answers:
@@ -412,7 +412,7 @@ function Results({goBack, answers}) {
       if (curr.vegetarian !== undefined) {
         acc += curr.vegetarian * dietMap['vegetarian'];
       }
-      return acc;
+      return acc/people;
     }, 0);
     
     console.log("Diet " + newTotal);    
@@ -445,7 +445,7 @@ function Results({goBack, answers}) {
       if (curr.every > 0) {
         acc += omniMap['every'] * curr.every;
       }
-      return acc;
+      return acc/people;
     }, 0);
     
     console.log("Omni " + newTotal);      
