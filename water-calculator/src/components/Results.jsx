@@ -459,7 +459,7 @@ function Results({goBack, answers}) {
 
 
     // the total should always be rounded at the end
-    setTotal((newTotal / 1000).toFixed(1));
+    setTotal((newTotal).toFixed(0));
   }, [answers]);
 
   return (
@@ -477,7 +477,7 @@ function Results({goBack, answers}) {
       <button className="again" onClick={goBack}>Отначало</button>
       
       {/* Display the user's result (water footprint) */}
-      <p className="your-results">{total} м³./ден</p>
+      <p className="your-results">{total} л./ден</p>
       
       {/* Advanced results section */}
       <div className="advanced-results">
