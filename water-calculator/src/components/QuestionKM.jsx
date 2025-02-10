@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "@mui/material/Slider";
 import './QuestionKM.css';
 
-function QuestionKM() {
+function QuestionKM({ selectedKm, onKmChange }) {
   // Define the range of possible values
   const ranges = [0, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500];
   
-  // State to track the current value of the slider
-  const [value, setValue] = useState(0);
+  // State to track the current value of the slider, initialized from props
+  const [value, setValue] = useState(selectedKm || 0);
+
+  useEffect(() => {
+    setValue(selectedKm || 0);
+  }, [selectedKm]);
 
   // Handle the change in slider value
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    onKmChange(newValue);
   };
 
   // Define the marks for the slider (each range)

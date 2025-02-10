@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
 import './QuestionPool.css';
 
-function QuestionPool() {
-  // State to store the slider value
-  const [value, setValue] = useState(1);
+function QuestionPool({ onPoolMonthsChange }) {
+  const [value, setValue] = useState(1); // Default value is 1 month
 
-  // Update the slider value when it changes
+  // Update slider value and notify the parent
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    onPoolMonthsChange(newValue); // Call the parent's update function
   };
 
   return (
     <div className="slider-container">
-      {/* Image representing the pool cover */}
       <img className="coverpool" src={require("../images/all/coverpool.png")} alt="pool cover" />
       
-      {/* Slider component to select a value between 1 and 12 */}
       <Slider
         className="slider"
         value={value}
@@ -26,13 +24,12 @@ function QuestionPool() {
         onChange={handleChange}
         valueLabelDisplay="auto"
         sx={{
-          color: "#1D4C1C", // Slider color
-          width: `calc(var(--scale) * 561)`, // Dynamic width based on scale
-          height: `calc(var(--scale) * 20)`, // Dynamic height based on scale
+          color: "#1D4C1C",
+          width: `calc(var(--scale) * 561)`,
+          height: `calc(var(--scale) * 20)`,
         }}
       />
       
-      {/* Display selected value with the correct month label */}
       <p className="value">{`${value} ${value === 1 ? "месец" : "месеца"}`}</p>
     </div>
   );

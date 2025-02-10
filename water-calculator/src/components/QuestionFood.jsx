@@ -1,44 +1,45 @@
 import React, { useState, useEffect } from "react";
 import "./QuestionFood.css";
 
-function QuestionFood({ 
+function QuestionFood({
   foodCounter: initialCounter = 0,  // Initial food counter
   foodEndCounterText = "в дома",    // Text for the remaining counter
   questions = [],                   // Array of questions to ask
-  foodImage                         // Image of the food
+  foodImage,                         // Image of the food
+  onChange,                          // The update handler
+  canMove,
 }) {
   const [foodCounter, setFoodCounter] = useState(initialCounter); // Current food counter state
-  const [foodValues, setFoodValues] = useState({});               // Store food counts for each question
+  const [foodValues, setFoodValues] = useState(
+    questions.reduce((acc, question) => ({ ...acc, [question]: 0 }), {}) // Initialize foodValues
+  );
 
-  // Reset counter and values when initialCounter or questions change
+  // Sync local foodCounter with prop change
   useEffect(() => {
-    setFoodCounter(initialCounter);
-    setFoodValues(
-      Array.isArray(questions)
-        ? questions.reduce((acc, question) => ({ ...acc, [question]: 0 }), {}) // Initialize all question counters to 0
-        : {}
-    );
-  }, [initialCounter, questions]);
+    setFoodCounter(initialCounter); // Update local state whenever the prop changes
+  }, [initialCounter]); // Run when initialCounter changes
 
-  // Increment the value for a specific question type
+  // Call onChange directly when foodValues is updated
+  const updateFoodValues = (newFoodValues) => {
+    setFoodValues(newFoodValues);
+    onChange(newFoodValues);  // Call the updateDiet function passed down as onChange
+  };
+
+  // Handle incrementing a specific question type
   const handleIncrement = (type) => {
     if (foodCounter > 0) {
-      setFoodValues((prev) => ({
-        ...prev,
-        [type]: prev[type] + 1, // Increase the count for the selected question
-      }));
-      setFoodCounter((prev) => prev - 1); // Decrease the overall counter
+      const newFoodValues = { ...foodValues, [type]: (foodValues[type] || 0) + 1 };
+      setFoodCounter(foodCounter - 1); // Decrease the overall counter
+      updateFoodValues(newFoodValues); // Update the foodValues and trigger onChange
     }
   };
 
-  // Decrement the value for a specific question type
+  // Handle decrementing a specific question type
   const handleDecrement = (type) => {
     if (foodValues[type] > 0) {
-      setFoodValues((prev) => ({
-        ...prev,
-        [type]: prev[type] - 1, // Decrease the count for the selected question
-      }));
-      setFoodCounter((prev) => prev + 1); // Increase the overall counter
+      const newFoodValues = { ...foodValues, [type]: foodValues[type] - 1 };
+      setFoodCounter(foodCounter + 1); // Increase the overall counter
+      updateFoodValues(newFoodValues); // Update the foodValues and trigger onChange
     }
   };
 
@@ -57,7 +58,7 @@ function QuestionFood({
       <p className="food-title-counter">Остават</p>
       <p className="food-counter">{foodCounter}</p>
       <p className="food-end-counter">{foodEndCounterText}</p>
-      
+
       {/* Render food questions and their increment/decrement buttons */}
       <div className="food-questions">
         {questions.map((question, index) => (
@@ -65,21 +66,17 @@ function QuestionFood({
             <p className="food-title">{question}</p>
             <div className="food-questions-operations">
               <img
-                className={`food-sign ${
-                  foodValues[question] === 0 ? "disabled" : ""
-                }`}
+                className={`food-sign ${foodValues[question] === 0 ? "disabled" : ""}`}
                 src={require("../images/all/minus.svg").default}
                 alt="minus"
-                onClick={() => foodValues[question] > 0 && handleDecrement(question)}
+                onClick={() => handleDecrement(question)}
               />
-              <p className="food-value">{foodValues[question]}</p>
+              <p className="food-value">{foodValues[question] || 0}</p>
               <img
-                className={`food-sign ${
-                  foodCounter === 0 ? "disabled" : ""
-                }`}
+                className={`food-sign ${foodCounter === 0 ? "disabled" : ""}`}
                 src={require("../images/all/plus.svg").default}
                 alt="plus"
-                onClick={() => foodCounter > 0 && handleIncrement(question)}
+                onClick={() => handleIncrement(question)}
               />
             </div>
           </div>

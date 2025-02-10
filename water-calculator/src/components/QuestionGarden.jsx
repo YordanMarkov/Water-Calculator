@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "@mui/material/Slider";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import './QuestionGarden.css';
 
-function QuestionGarden() {
+function QuestionGarden({ onGardenUsageChange, selectedTimes, selectedPeriod }) {
   const [value, setValue] = useState(1); // Initial value set to 1
-  const [times, setTimes] = useState(0); // Tracks watering times
-  const [period, setPeriod] = useState(""); // Tracks watering period
+  const [times, setTimes] = useState(selectedTimes || 0); // Tracks watering times
+  const [period, setPeriod] = useState(selectedPeriod || ""); // Tracks watering period
+
+  // Ref to store the previous values to compare
+  const prevValuesRef = useRef({ times, period, value });
 
   // Handle the change in slider value
   const handleChange = (event, newValue) => {
@@ -16,18 +19,22 @@ function QuestionGarden() {
   // Handles increment/decrement of times
   const handleTimesChange = (operation) => {
     setTimes((prevTimes) => {
-      return operation === "increase" ? prevTimes + 1 : Math.max(0, prevTimes - 1);
+      const newTimes = operation === "increase" ? prevTimes + 1 : Math.max(0, prevTimes - 1);
+      onGardenUsageChange(newTimes, period, value); // Update parent state
+      return newTimes;
     });
   };
 
   // Handles period selection change
   const handlePeriodChange = (event) => {
-    setPeriod(event.target.value);
+    const newPeriod = event.target.value;
+    setPeriod(newPeriod);
+    onGardenUsageChange(times, newPeriod, value); // Update parent state
   };
 
   // Disable style for decrease button
   const getButtonStyle = (isDisabled) => {
-    return isDisabled ? { filter: "grayscale(100%)", cursor: "not-allowed" } : {};
+    return isDisabled ? { filter: 'grayscale(100%)', cursor: 'not-allowed' } : {};
   };
 
   const periods = ["Ден", "Седмица", "Месец", "Година"];
@@ -40,6 +47,18 @@ function QuestionGarden() {
     { value: 4, label: "95 - 450 кв.м." },
     { value: 5, label: "450 кв.м. - 1 декар" },
   ];
+
+  useEffect(() => {
+    // Only call onGardenUsageChange if the new values differ from the previous ones
+    if (
+      times !== prevValuesRef.current.times ||
+      period !== prevValuesRef.current.period ||
+      value !== prevValuesRef.current.value
+    ) {
+      onGardenUsageChange(times, period, value);
+      prevValuesRef.current = { times, period, value }; // Update the ref with the new values
+    }
+  }, [times, period, value, onGardenUsageChange]);
 
   return (
     <div className="slider-container">
@@ -89,13 +108,13 @@ function QuestionGarden() {
         <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
           <InputLabel
             sx={{
-              fontSize: "calc(var(--scale) * 25)",
-              fontFamily: "Comfortaa, sans-serif",
-              color: "white",
-              textAlign: "center",
-              width: "calc(var(--scale) * 424)",
+              fontSize: 'calc(var(--scale) * 25)',
+              fontFamily: 'Comfortaa, sans-serif',
+              color: 'white',
+              textAlign: 'center',
+              width: 'calc(var(--scale) * 424)',
               opacity: period ? 0 : 1,
-              transition: "opacity 0.3s ease",
+              transition: 'opacity 0.3s ease',
             }}
             shrink={!!period}
           >
@@ -105,14 +124,14 @@ function QuestionGarden() {
             value={period}
             onChange={handlePeriodChange}
             sx={{
-              backgroundColor: "#1D4C1C",
-              width: "calc(var(--scale) * 224)",
-              borderRadius: "calc(var(--scale) * 30)",
-              color: "white",
-              fontSize: "calc(var(--scale) * 25)",
-              fontFamily: "Comfortaa, sans-serif",
-              textAlign: "center",
-              transition: "0.3s opacity",
+              backgroundColor: '#1D4C1C',
+              width: 'calc(var(--scale) * 224)',
+              borderRadius: 'calc(var(--scale) * 30)',
+              color: 'white',
+              fontSize: 'calc(var(--scale) * 25)',
+              fontFamily: 'Comfortaa, sans-serif',
+              textAlign: 'center',
+              transition: '0.3s opacity',
               ".MuiSelect-icon": {
                 color: "white",
               },

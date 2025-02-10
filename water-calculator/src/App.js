@@ -86,20 +86,122 @@ function App() {
   };
 
   const [answers, setAnswers] = useState([
-    { area: "" },
-    { people: null },
-    { answer: null },
-    { answer: null },
-    { times: 0, period: "" }, // Store both values for Question 4
-    { answer: null },
-    { answer: null },
-    { answer: null },
-    { answer: null },
-    { answer: null },
-    [ ],
-    [ ],  
-    { answer: null },
+    { area: "" }, // 0
+    { people: 1 }, // 1
+    { answer: null }, // 2
+    { answer: null }, // 3
+    { times: 0, period: "" }, // 4
+    { answer: null }, // 5
+    { answer: null }, // 6
+    { answer: null }, // 7
+    { answer: null }, // 8
+    { answer: null }, // 9
+    [ ], // 10
+    [ ],  // 10 + 11
+    { answer: null }, // 12
+    { times: 0, period: "", value: 1 }, // 13 Garden times period area
+    { answer: null }, // 14
+    { answer: null }, // 15
+    { answer: null }, // 16
+    { answer: null }, // 17
+    { months: 1 }, // 18 Pool months
+    { answer: null }, // 19
+    [ ], // 20 Carwash
+    { value: 0 }, // 21 Car km
+    {home: 50, el: 50}, // 22 Electricty
+    { answer: null }, // 23
+    { answer: null }, // 24
+    { answer: null }, // 25
+    { answer: null }, // 26
+    { answer: null }, // 27
+    [{vegan: 0}, {vegetarian: 0}, {omnivore: 0}], // 28 Diet
+    [{no: 0}, {once: 0}, {twice: 0}, {every: 0}], // 29 Omni
+    { lv: 0 }, // 30 Pets
+    { answer: null }, // 31
+    { answer: null }, // 32
   ]);
+
+  // Omni
+  const updateOmnivoreFrequency = (newFoodValues) => {
+    setAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers]; // Copy the previous state
+
+      // Update specific omnivore frequency values
+      updatedAnswers[29] = [
+        { ...updatedAnswers[29][0], no: newFoodValues["Не всеки ден"] || 0 },  // Frequency: Not every day
+        { ...updatedAnswers[29][1], once: newFoodValues["Веднъж дневно"] || 0 }, // Frequency: Once a day
+        { ...updatedAnswers[29][2], twice: newFoodValues["Два пъти дневно"] || 0 }, // Frequency: Twice a day
+        { ...updatedAnswers[29][3], every: newFoodValues["На всяко хранене"] || 0 } // Frequency: Every meal
+      ];
+
+      // Log the updated state
+      console.log(updatedAnswers);
+      return updatedAnswers;
+    });
+  };
+
+  const [canMove, setCanMove] = useState(false);
+  const [canOmniMove, setCanOmniMove] = useState(false);
+  
+  
+
+  // Diet update function
+  const updateDiet = (newFoodValues) => {
+    setAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers]; // Copy the previous state
+
+      // Update specific values for vegan, vegetarian, omnivore
+      updatedAnswers[28] = [
+        { ...updatedAnswers[28][0], vegan: newFoodValues["Веган"] || 0 },
+        { ...updatedAnswers[28][1], vegetarian: newFoodValues["Вегетарианец"] || 0 },
+        { ...updatedAnswers[28][2], omnivore: newFoodValues["Всеяден"] || 0 }
+      ];
+
+      // Log the updated state
+      console.log(updatedAnswers);
+      return updatedAnswers;
+    });
+  };
+
+  // El function
+  const updateElectricity = (newValue) => {
+    setAnswers(prevAnswers => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[22] = { home: 100 - newValue, el: newValue }; // Store slider values
+      return updatedAnswers;
+    });
+  };
+
+  // Update function for carwash usage
+  const updateCarwashUsage = (newSelection) => {
+      setAnswers(prevAnswers => {
+        const updatedAnswers = [...prevAnswers];
+        updatedAnswers[20] = newSelection; // Ensure index 20 gets updated properly
+        return updatedAnswers;
+      });
+  };
+
+
+  // Update function for pool months
+  const updatePoolMonths = (newMonths) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[17] = { months: newMonths }; // Update pool months at index 17
+      console.log(updatedAnswers[17]);
+      return updatedAnswers;
+    });
+  };
+
+  // Function to update garden usage answer
+  const updateGardenUsage = (times, period, value) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[14] = { times, period, value }; // Save both values (adjust the index if needed)
+      console.log(updatedAnswers[14]);
+      return updatedAnswers;
+    });
+  };
+
 
   const updateDishUsage = (newSelection) => {
     setAnswers(prevAnswers => {
@@ -609,7 +711,11 @@ function App() {
             questionText="Каква площ поливате?"
             isGreen={true}
           />
-          <QuestionGarden/>
+          <QuestionGarden
+            selectedTimes={answers[14].times} // Pass stored value
+            selectedPeriod={answers[14].period} // Pass stored value
+            onGardenUsageChange={updateGardenUsage} // Handle changes
+          />
           <Info
             color="green"
             text="
@@ -623,9 +729,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
-        buttonTitles: [],
-        isGreen: true,
+        isThereNext: answers[14].times > 0 && answers[14].period !== "" && answers[14].value > 0, // Next button only if both conditions are met
       },
     },
     // Question 15
@@ -650,6 +754,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
+        answerIndex: 15, // Save to answers[15]
       },
     },  
     // Question 16
@@ -685,6 +790,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
+        answerIndex: 16, // Save to answers[16]
       },
     },
     // Question 17
@@ -711,6 +817,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
+        answerIndex: 17, // Save to answers[17]
       },
     },
     // Question 18
@@ -724,7 +831,7 @@ function App() {
             questionText="Колко месеца той седи покрит?"
             isGreen={true}
           />
-          <QuestionPool/>
+          <QuestionPool onPoolMonthsChange={updatePoolMonths} /> {/* Pass the update function as prop */}
           <Info
             color="green"
             text="
@@ -766,6 +873,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не'],
         isGreen: true,
+        answerIndex: 19, // Save to answers[19]
       },
     },
     // Question 20
@@ -788,6 +896,8 @@ function App() {
             questionCount={4}
             bigImageSrc={require("./images/all/carwash.png")}
             isGreen={true}
+            selectedOptions={answers[20]} // Pass stored selections
+            onDishUsageChange={updateCarwashUsage} // Function to update answers
           />
           <Info
             color="green"
@@ -805,7 +915,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
+        isThereNext: answers[20]?.some(option => option.times > 0 && option.period !== ""),
         buttonTitles: [],
         isGreen: true,
       },
@@ -822,7 +932,12 @@ function App() {
             questionText="Колко километра изминавате седмично?"
             isPurple={true}
           />
-          <QuestionKM/>
+          <QuestionKM selectedKm={answers[21].value} onKmChange={(value) => setAnswers(prev => {
+            const updatedAnswers = [...prev];
+            updatedAnswers[21] = { value }; 
+            return updatedAnswers;
+          })} />
+
           <Info
             color="purple"
             text="
@@ -873,7 +988,10 @@ function App() {
             questionText="Откъде идва вашият ток?"
             isPurple={true}
           />
-          <QuestionEl/>
+          <QuestionEl
+            sliderValue={answers[22].el} 
+            onSliderChange={(event, newValue) => updateElectricity(newValue)}
+          />
           <Info
             color="purple"
             text="
@@ -918,6 +1036,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Само нужното', 'Харесвам', 'До припадък!'],
         isPurple: true,
+        answerIndex: 23, // Save to answers[23]
       },
     },
     // Question 25
@@ -944,6 +1063,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Понякога'],
         isPurple: true,
+        answerIndex: 24, // Save to answers[24]
       },
     },
     // Question 26
@@ -970,6 +1090,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Понякога'],
         isPurple: true,
+        answerIndex: 25, // Save to answers[25]
       },
     },
     // Question 27
@@ -996,6 +1117,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Понякога'],
         isPurple: true,
+        answerIndex: 26, // Save to answers[26]
       },
     },
     // Question 28
@@ -1022,6 +1144,7 @@ function App() {
         isThereNext: false,
         buttonTitles: ['Да', 'Не', 'Понякога'],
         isPurple: true,
+        answerIndex: 27, // Save to answers[27]
       },
     },
     // Question 30
@@ -1036,10 +1159,16 @@ function App() {
             isPurple={true}
           />
           <QuestionFood
-            foodCounter={4}
+            foodCounter={answers[1].people}
             foodEndCounterText="в дома"
             questions={["Веган", "Вегетарианец", "Всеяден"]}
             foodImage={require("./images/all/foodtray.png")}
+            onChange={(newValues) => {
+              updateDiet(newValues);  // Update diet answers
+              setCanMove(Object.values(newValues).reduce((sum, val) => sum + val, 0) === answers[1].people);
+              // Check if all people are assigned
+            }}
+            
           />
           <Info
             color="purple"
@@ -1057,7 +1186,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
+        isThereNext: canMove,
         buttonTitles: [],
         isPurple: true,
       },
@@ -1074,10 +1203,14 @@ function App() {
             isPurple={true}
           />
           <QuestionFood
-            foodCounter={2}
+            foodCounter={answers[28][2].omnivore}
             foodEndCounterText="всеядни"
             questions={["Не всеки ден", "Веднъж дневно", "Два пъти дневно", "На всяко хранене"]}
             foodImage={require("./images/all/steak.png")}
+            onChange={(newValues) => {
+              updateOmnivoreFrequency(newValues);
+              setCanOmniMove(Object.values(newValues).reduce((sum, val) => sum + val, 0) === answers[1].people + answers[28][2].omnivore);
+            }}
           />
           <Info
             color="purple"
@@ -1096,7 +1229,7 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: true,
+        isThereNext: canOmniMove,
         buttonTitles: [],
         isPurple: true,
       },
