@@ -30,61 +30,6 @@ import Welcome from './components/Welcome';
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  // Warn the user that the changes may not be saved
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ''; // Required for Chrome, but ignored by most modern browsers
-    };
-  
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, []);  
-  
-
-  // Go to the next question
-  const goToNextQuestion = () => {
-    if (
-      currentQuestionIndex < questions.length - 1 && // Not the last question
-      questions[currentQuestionIndex].answerProps.isThereNext // Can go forward
-    ) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to next
-    }
-  };
-
-  // Go to the previous question
-  const goToPrevQuestion = () => {
-    if (currentQuestionIndex > 0) { // Not the first question
-      setCurrentQuestionIndex(currentQuestionIndex - 1); // Move back
-    }
-  };
-
-  // On option click, go to the next question
-  const handleOptionClick = (answerIndex, answer) => {
-    setAnswers((prevAnswers) => {
-      const updatedAnswers = [...prevAnswers];
-      updatedAnswers[answerIndex] = { answer }; // Save answer to correct index
-      console.log(answers);
-      return updatedAnswers;
-    });
-  
-    // Move to the next question automatically
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
-  };
-
-  // Go back to the first question
-  const goBack = () => {
-    setCurrentQuestionIndex(0); // Reset to start
-  };
-
-  // Go to the second question
-  const goNext = () => {
-    setCurrentQuestionIndex(1); //
-  };
-
   const [answers, setAnswers] = useState([
     { area: "" }, // 0
     { people: 1 }, // 1
@@ -120,6 +65,90 @@ function App() {
     { answer: null }, // 31
     { answer: null }, // 32
   ]);
+
+  // Warn the user that the changes may not be saved
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Required for Chrome, but ignored by most modern browsers
+    };
+  
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);  
+  
+
+  // Go to the next question
+  const goToNextQuestion = () => {
+    // Skip the omni question if there are no omnis
+    if (currentQuestionIndex === 29 && answers[28][2].omnivore === 0) {
+      setCurrentQuestionIndex(31);
+    } else if (
+      currentQuestionIndex < questions.length - 1 && // Not the last question
+      questions[currentQuestionIndex].answerProps.isThereNext // Can go forward
+    ) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to next
+    }
+  };
+
+  // Go to the previous question
+  const goToPrevQuestion = () => {
+    if (currentQuestionIndex > 0) { // Not the first question
+      setCurrentQuestionIndex(currentQuestionIndex - 1); // Move back
+    }
+  };
+
+  // On option click, go to the next question
+  const handleOptionClick = (answerIndex, answer) => {
+    setAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[answerIndex] = { answer }; // Save answer to correct index
+      console.log(answers);
+      return updatedAnswers;
+    });
+  
+    // Move to the next question automatically
+    // if (currentQuestionIndex < questions.length - 1) {
+    //   setCurrentQuestionIndex(currentQuestionIndex + 1);
+    // }
+
+    // Determine next question index
+    let nextQuestionIndex = currentQuestionIndex + 1;
+
+    // If the user answers "No" to question 13, skip question 17
+    if (answerIndex === 13 && answer === "Не") {
+      nextQuestionIndex = 17; // Skip to question 17
+    }
+
+    // If the user answers "No" to question 17, skip question 20
+    if (answerIndex === 17 && answer === "Не") {
+      nextQuestionIndex = 20; // Skip to question 20
+    }
+
+    // If the user answers "No" to question 19, skip question 22
+    if (answerIndex === 19 && answer === "Не") {
+      nextQuestionIndex = 22; // Skip to question 22
+    }
+
+    if (answerIndex === 30 && answers[28][2].omnivore === 0) {
+      nextQuestionIndex = 32; // Skip to the next relevant question after diet
+    }
+
+    // Move to the next relevant question
+    if (nextQuestionIndex < questions.length) {
+      setCurrentQuestionIndex(nextQuestionIndex);
+    }
+  };
+
+  // Go back to the first question
+  const goBack = () => {
+    setCurrentQuestionIndex(0); // Reset to start
+  };
+
+  // Go to the second question
+  const goNext = () => {
+    setCurrentQuestionIndex(1);
+  };
 
   // Pet
   const updatePetValue = (newValue) => {
