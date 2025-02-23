@@ -100,6 +100,12 @@ function App() {
 
   // On option click, go to the next question
   const handleOptionClick = (answerIndex, answer) => {
+    if (answerIndex === 32) {
+      if (!window.confirm("Готови ли сте? След този въпрос няма връщане назад.")) {
+        return; // Cancel the navigation if the user does not confirm.
+      }
+    }
+
     setAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
       updatedAnswers[answerIndex] = { answer }; // Save answer to correct index
