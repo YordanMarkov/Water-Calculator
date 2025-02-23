@@ -81,7 +81,7 @@ function App() {
   // Go to the next question
   const goToNextQuestion = () => {
     // Skip the omni question if there are no omnis
-    if (currentQuestionIndex === 29 && answers[28][2].omnivore === 0) {
+    if (currentQuestionIndex === 29 && omnivoreCount === 0) {
       setCurrentQuestionIndex(31);
     } else if (
       currentQuestionIndex < questions.length - 1 && // Not the last question
@@ -180,25 +180,21 @@ function App() {
 
   const [canMove, setCanMove] = useState(false);
   const [canOmniMove, setCanOmniMove] = useState(false);
-  
-  
+  const [omnivoreCount, setOmnivoreCount] = useState(0);  
 
   // Diet update function
   const updateDiet = (newFoodValues) => {
     setAnswers(prevAnswers => {
-      const updatedAnswers = [...prevAnswers]; // Copy the previous state
-
-      // Update specific values for vegan, vegetarian, omnivore
+      const updatedAnswers = [...prevAnswers];
+      const newOmnivore = newFoodValues["Всеяден"] || 0;
       updatedAnswers[28] = [
         { ...updatedAnswers[28][0], vegan: newFoodValues["Веган"] || 0 },
         { ...updatedAnswers[28][1], vegetarian: newFoodValues["Вегетарианец"] || 0 },
-        { ...updatedAnswers[28][2], omnivore: newFoodValues["Всеяден"] || 0 }
+        { ...updatedAnswers[28][2], omnivore: newOmnivore }
       ];
-
-      // Log the updated state
-      console.log(updatedAnswers);
       return updatedAnswers;
     });
+    setOmnivoreCount(newFoodValues["Всеяден"] || 0);
   };
 
   // El function
@@ -1197,16 +1193,17 @@ function App() {
             isPurple={true}
           />
           <QuestionFood
+            key={`diet-${answers[1].people}`}
             foodCounter={answers[1].people}
             foodEndCounterText="в дома"
             questions={["Веган", "Вегетарианец", "Всеяден"]}
             foodImage={require("./images/all/foodtray.png")}
             onChange={(newValues) => {
-              updateDiet(newValues);  // Update diet answers
-              setCanMove(Object.values(newValues).reduce((sum, val) => sum + val, 0) === answers[1].people);
-              // Check if all people are assigned
+              updateDiet(newValues);
+              setCanMove(
+                Object.values(newValues).reduce((sum, val) => sum + val, 0) === answers[1].people
+              );
             }}
-            
           />
           <Info
             color="purple"
@@ -1241,13 +1238,16 @@ function App() {
             isPurple={true}
           />
           <QuestionFood
-            foodCounter={answers[28][2].omnivore}
+            key={`meat-frequency-${omnivoreCount}`}
+            foodCounter={omnivoreCount}
             foodEndCounterText="всеядни"
             questions={["Не всеки ден", "Веднъж дневно", "Два пъти дневно", "На всяко хранене"]}
             foodImage={require("./images/all/steak.png")}
             onChange={(newValues) => {
               updateOmnivoreFrequency(newValues);
-              setCanOmniMove(Object.values(newValues).reduce((sum, val) => sum + val, 0) === answers[1].people + answers[28][2].omnivore);
+              setCanOmniMove(
+                Object.values(newValues).reduce((sum, val) => sum + val, 0) === omnivoreCount
+              );
             }}
           />
           <Info
