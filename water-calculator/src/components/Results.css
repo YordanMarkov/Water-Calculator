@@ -16,10 +16,11 @@
     position: absolute;
     width: calc(var(--scale) * 754);
     height: calc(var(--scale) * 54);
-    top: calc(var(--scale) * -25);
+    top: calc(var(--scale) * -40);
     left: calc(var(--scale) * 575);
-    font-size: calc(var(--scale) * 48);
+    font-size: calc(var(--scale) * 45);
     color: #4B3328;
+    text-align: center;
 }
 
 .sun {
@@ -56,10 +57,21 @@
     position: absolute;
     width: calc(var(--scale) * 675);
     height: calc(var(--scale) * 123);
-    top: calc(var(--scale) * 190);
-    left: calc(var(--scale) * 610);
-    color: white;
+    top: calc(var(--scale) * 150);
+    left: calc(var(--scale) * 630);
+    color: #FFB157;
     font-size: calc(var(--scale) * 90);
+    text-align: center;
+}
+
+.your-sum {
+    position: absolute;
+    width: calc(var(--scale) * 675);
+    height: calc(var(--scale) * 123);
+    top: calc(var(--scale) * 320);
+    left: calc(var(--scale) * 630);
+    color: #FFCA8D;
+    font-size: calc(var(--scale) * 40);
     text-align: center;
 }
 
@@ -67,7 +79,8 @@
     position: absolute;
     display: flex;
     top: calc(var(--scale) * 550);
-    left: calc(var(--scale) * 560);
+    left: calc(var(--scale) * 420);
+    align-items: center;
 }
 
 .results-text {
@@ -90,6 +103,31 @@
 
 .results-image-area {
     width: calc(var(--scale) * 137);
+}
+
+.water-footprint {
+    margin-right: calc(var(--scale) * 27);
+}
+
+.water-footprint-drop {
+    width: calc(var(--scale) * 250);
+}
+
+.water-footprint-text, .water-footprint-result {
+    position: absolute;
+    color: white;
+    font-size: calc(var(--scale) * 30);
+    text-align: center;
+}
+
+.water-footprint-text {
+    margin-top: calc(var(--scale) * -230);
+    margin-left: calc(var(--scale) * 27);
+}
+
+.water-footprint-result {
+    margin-top: calc(var(--scale) * -120);
+    margin-left: calc(var(--scale) * 32);
 }
 
 .clouds {
@@ -175,7 +213,7 @@
         transform: translateX(0) translateY(0);
     }
     50% {
-        transform: translateX(calc(var(--scale) * 90)) translateY(calc(var(--scale) * -10));
+        transform: translateX(calc(var(--scale) * 50)) translateY(calc(var(--scale) * -10));
     }
     100% {
         transform: translateX(0) translateY(0);

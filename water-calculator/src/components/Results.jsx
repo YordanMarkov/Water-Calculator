@@ -43,6 +43,9 @@ function Results({goBack, answers}) {
   //   ]);
 
   const [total, setTotal] = useState(0);
+  const [sum, setSum] = useState(0);
+  const [virtual, setVirtual] = useState(0);
+  
 
   useEffect(() => {
 
@@ -320,6 +323,12 @@ function Results({goBack, answers}) {
     newTotal += (answers[21].value + 150) / 0.6 / people / 7;
     console.log("Car km " + newTotal);
 
+
+    let waterRaz = newTotal;
+    setTotal((waterRaz).toFixed(0));
+    setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
+    // waterRaz * (30 / 1000) * 3.695
+
     // El
     // I am putting myself an example for water consumption: 113
     // total += el * 113
@@ -459,7 +468,8 @@ function Results({goBack, answers}) {
 
 
     // the total should always be rounded at the end
-    setTotal((newTotal).toFixed(0));
+    let newVirtual = newTotal - waterRaz;
+    setVirtual((newVirtual).toFixed(0));
   }, [answers]);
 
   return (
@@ -468,7 +478,7 @@ function Results({goBack, answers}) {
       <img className="cloud-base" src={require("../images/all/cloud-base.svg").default} alt="Cloud Base" />
       
       {/* Title for the results */}
-      <p className="results-title">Вашият воден отпечатък е</p>
+      <p className="results-title">Вашето потребление на водни услуги е</p>
       
       {/* Sun image */}
       <img className="sun" src={require("../images/all/sun.svg").default} alt="Sun" />
@@ -478,9 +488,17 @@ function Results({goBack, answers}) {
       
       {/* Display the user's result (water footprint) */}
       <p className="your-results">{total} л./ден</p>
+
+      {/* Display the user's result's sum (water footprint) */}
+      <p className="your-sum">{sum} лв./месец</p>
       
       {/* Advanced results section */}
       <div className="advanced-results">
+        <div className="water-footprint">
+          <img className="water-footprint-drop" src={require("../images/all/water-drop-otpechatuk.svg").default} alt="Water Drop" />
+          <p className="water-footprint-text">Воден <br />отпечатък</p>
+          <p className="water-footprint-result">{virtual} л./ден</p>
+        </div>
         <div className="results-advanced-container">
           {/* Map showing Bulgaria */}
           <img className="results-image-map" src={require("../images/all/blue-map.svg").default} alt="Bulgaria" />
