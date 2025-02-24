@@ -1,6 +1,13 @@
 import './Results.css';
 import { useState, useEffect } from "react";
 
+function scrollDown() {
+  window.scrollBy({
+    top: 1110,
+    behavior: 'smooth'
+  });
+}
+
 function Results({goBack, answers}) {
   // IMPORTANT: This component is static! Nothing is functional behind and the calculations
   // are completely made up. The purpose of this component is to show how the final results
@@ -45,7 +52,157 @@ function Results({goBack, answers}) {
   const [total, setTotal] = useState(0);
   const [sum, setSum] = useState(0);
   const [virtual, setVirtual] = useState(0);
-  
+
+  const tips = [
+    {
+      icon: require("../images/all/bath-cloud.svg").default,
+      description: "Знаете ли, че една пълна вана може да използва около 400 литра вода, докато 10-минутен душ – само около 100 литра? Използвайте душ, за да спестите вода, пари и да се грижите за околната среда!"
+    },
+    {
+      icon: require("../images/all/dish-cloud.svg").default,
+      description: "Дори и да изглежда, че съдомиялната е по-скъпа за покупка, истината е, че миенето на съдовете на ръка често води до по-голяма консумация на вода. Съдомиялната е добро начало – а водоефективната е най-добрата, защото спестява вода и енергия, осигурявайки отлични резултати!"
+    },
+    {
+      icon: require("../images/all/sprinkler-cloud.svg").default,
+      description: "Да поливаш градината си чрез пръскачка може да изглежда практично, но ако градината е много голяма, това може да доведе до сериозно разхищение на вода. Помислете за оптимизиране на напояването с капково напояване или автоматизирани системи, които контролират разхода."
+    },
+    {
+      icon: require("../images/all/car-cloud.svg").default,
+      description: "Миенето на автомобили може да бъде истинско предизвикателство за някои, но правилният подход може да спести значително количество вода. Използвайте автомивки с рециклирана вода или методи, проектирани да пестят вода, за да осигурите ефективност."
+    },
+    {
+      icon: require("../images/all/recycle-cloud.svg").default,
+      description: "Истината в рециклирането е, че то не само намалява отпадъците, но и спестява значителни количества вода. Например, чрез рециклиране на хладилни агенти и други материали се намалява необходимостта от водоемки производствени процеси."
+    },
+    {
+      icon: require("../images/all/swim-cloud.svg").default,
+      description: "Поддържането на басейн не е за всеки, но ако басейнът е открит през по-голямата част от годината, значителни количества вода могат да се изгубят поради изпарение и поддръжка. Обмислете по-ефективни решения за покриване и поддръжка."
+    },
+    {
+      icon: require("../images/all/meal-cloud.svg").default,
+      description: "Яденето на месо е за мнозина истинско удоволствие, но ограничаването му може да доведе до значително спестяване на вода, тъй като производството на месо е изключително водоемко."
+    },
+    {
+      icon: require("../images/all/wash-cloud.svg").default,
+      description: "Да переш на ръка е вече старомодно и водоемко. Модерните перални, дори водоефективните, предлагат по-нисък разход на вода и по-добра ефективност при прането."
+    },
+    {
+      icon: require("../images/all/light-cloud.svg").default,
+      description: "Инсталирането на слънчеви панели или други енергоспестяващи технологии може не само да намали разходите за електроенергия, но и да подпомогне съхранението и пестенето на вода."
+    },
+    {
+      icon: require("../images/all/sink-cloud.svg").default,
+      description: "Ако използвате стари кранове с висока струя, това може да означава, че домът ви е построен преди 1994 г. Помислете за смяна с модерни, нискоразходни модели, които помагат за намаляване на водния разход."
+    },
+    {
+      icon: require("../images/all/gray-cloud.svg").default,
+      description: "Сиво-водната система за преизползване е невероятна! Тя може да рециклира използваната вода от домакинството и да я използва за тоалетни, градина или пералня, намалявайки общата консумация."
+    },
+    {
+      icon: require("../images/all/shop-cloud.svg").default,
+      description: "Пазаруването е удоволствие за много, но прекомерното потребление води до значителни разходи на водните ресурси. Избирайте продукти с по-малко опаковки и подкрепяйте устойчиви марки за по-малък отпечатък."
+    },
+    {
+      icon: require("../images/all/pet-cloud.svg").default,
+      description: "Домашният любимец е част от семейството, но поддръжката му може да доведе до допълнителни разходи за вода. Оптимизирайте грижите за него чрез ефективни методи и продукти, които спестяват вода."
+    }
+  ];    
+
+  // Compute the filtered tips based on the user's answers.
+  // (Note: You may need to adjust thresholds and exact comparisons based on your answer structure.)
+  const filteredTips = [];
+
+  // 1. Bath usage tip – if the user uses the bath.
+  if (answers[4].answer !== "Не използвам!") {
+    filteredTips.push(tips[0]);
+  }
+
+  // 2. Handwash dishes more than 4 times per day.
+  if (
+    answers[10].some(
+      (item) => item.option.trim() === "На ръка" && item.times > 4
+    )
+  ) {
+    filteredTips.push(tips[1]);
+  }
+
+  // 3. Garden watering too often and large garden.
+  if (
+    answers[13].answer === "Да" &&
+    (answers[14].times > 4 || answers[14].value >= 4)
+  ) {
+    filteredTips.push(tips[2]);
+  }
+
+  // 4. Car washing by hand too often.
+  if (
+    answers[20].some(
+      (item) => item.option === "С маркуч от вкъщи" && item.times > 2
+    )
+  ) {
+    filteredTips.push(tips[3]);
+  }
+
+  // 5. Not recycling (this assumes you have a "recycle" flag in answers)
+  if (answers.recycle === false) {
+    filteredTips.push(tips[4]);
+  }
+
+  // 6. Pool uncovered more than 4 months (assuming answers[18].months is months the pool is covered)
+  // For example, if the pool is covered less than 8 months, it is uncovered more than 4 months.
+  if (answers[17].answer === "Да" && answers[18].months < 8) {
+    filteredTips.push(tips[5]);
+  }
+
+  // 7. Presence of omnivores in the household.
+  if (
+    answers[29].some(
+      (item) =>
+        (item.no && item.no > 0) ||
+        (item.once && item.once > 0) ||
+        (item.twice && item.twice > 0) ||
+        (item.every && item.every > 0)
+    )
+  ) {
+    filteredTips.push(tips[6]);
+  }
+
+  // 8. If people handwash their clothes.
+  if (answers[11].some((item) => item.option === "На ръка")) {
+    filteredTips.push(tips[7]);
+  }
+
+  // 9. If people use 100% of electricity.
+  if (answers[22].el === 100) {
+    filteredTips.push(tips[8]);
+  }
+
+  // 10. If any low-flow sink/shower question is answered negatively.
+  if (
+    answers[3].answer === "Не" ||
+    answers[6].answer === "Не" ||
+    answers[9].answer === "Не"
+  ) {
+    filteredTips.push(tips[9]);
+  }
+
+  // 11. If the user said no to graywater (i.e. not using it).
+  if (answers[12].answer !== "Да") {
+    filteredTips.push(tips[10]);
+  }
+
+  // 12. If the user loves to shop ("Харесвам" or "До припадък!").
+  if (
+    answers[23].answer === "Харесвам" ||
+    answers[23].answer === "До припадък!"
+  ) {
+    filteredTips.push(tips[11]);
+  }
+
+  // 13. If the user spent more than 50 lv on their pet.
+  if (answers[30].lv > 50) {
+    filteredTips.push(tips[12]);
+  }
 
   useEffect(() => {
 
@@ -512,7 +669,33 @@ function Results({goBack, answers}) {
         </div>
       </div>
 
-      
+      <img className="tips-arrow" src={require("../images/all/tips-arrow.svg").default} alt="Arrow" onClick={scrollDown}/>
+
+      {/* Tips */}
+      <div className="tips-title">
+        <img
+          className="tips-background"
+          src={require("../images/all/tips-background.svg").default}
+          alt="Tips background"
+        />
+        <p className="tips-heading">Съвети</p>
+      </div>
+      {/* Render filtered tips */}
+      <div className="all-tips">
+        <div className="tips-container">
+          {filteredTips.map((tip, index) => (
+            <div
+              key={index}
+              className={`tip ${index % 2 === 0 ? "tip-left" : "tip-right"}`}
+            >
+              <img className="tip-icon" src={tip.icon} alt="Tip Icon" />
+              <div className="tip-description">{tip.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+          
       
       {/* Clouds section */}
       <div className="clouds">

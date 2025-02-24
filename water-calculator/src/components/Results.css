@@ -9,7 +9,7 @@
     width: calc(var(--scale) * 2254);
     height: calc(var(--scale) * 814);
     bottom: calc(var(--scale) * -1120);
-    left: calc(var(--scale) * 0);
+    left: calc(var(--scale) * -10);
 }
 
 .results-title {
@@ -268,4 +268,88 @@
     }
 }
 
+.tips-arrow {
+    position: absolute;
+    top: calc(var(--scale) * 880);
+    left: calc(var(--scale) * 920);
+    width: calc(var(--scale) * 50);
+    animation: upDown 2s infinite ease-in-out;
+    cursor: pointer;
+    opacity: 0.5;
+}
 
+@keyframes upDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.tips-title {
+    position: absolute;
+    top: calc(var(--scale) * 1100);
+    left: calc(var(--scale) * 550);
+}
+
+.tips-background {
+    width: calc(var(--scale) * 1920);
+    margin-left: calc(var(--scale) * -560);
+}
+
+.tips-heading {
+    margin-top: calc(var(--scale) * -75);
+    margin-left: calc(var(--scale) * 280);
+    color: #FFCA8D;
+    font-size: calc(var(--scale) * 50);
+    font-weight: bold;
+}
+
+.all-tips {
+    position: absolute;
+    top: calc(var(--scale) * 1200);
+    left: calc(var(--scale) * 350);
+}
+
+.tips-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc(var(--scale) * 20);
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    width: calc(var(--scale) * 1200);
+    margin: calc(var(--scale) * 40) auto;
+}
+
+/* For tips that should have the image on the left (default order) */
+.tip-left {
+    flex-direction: row;
+}
+
+/* For tips that should have the image on the right */
+.tip-right {
+    flex-direction: row-reverse;
+}
+
+.tip-icon {
+    width: calc(var(--scale) * 150);
+}
+
+.tip-description {
+    width: 80%;
+    font-size: calc(var(--scale) * 25);
+    color: #4B3328;
+    padding: calc(var(--scale) * 10);
+    text-align: justify;
+    margin-left: calc(var(--scale) * 40);
+    margin-right: calc(var(--scale) * 40);
+}
+  

@@ -2,6 +2,7 @@
 
 body {
     background-color: #E1F1FE;
+    overflow-x: hidden;
 }
 
 .logo {
