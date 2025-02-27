@@ -646,7 +646,7 @@ function Results({goBack, answers}) {
       <p className="your-results">{total} л./ден</p>
 
       {/* Display the user's result's sum (water footprint) */}
-      <p className="your-sum">{sum} лв./месец</p>
+      <p className="your-sum">{total*30/1000} кубика, {sum} лв./месец</p>
       
       {/* Advanced results section */}
       <div className="advanced-results">

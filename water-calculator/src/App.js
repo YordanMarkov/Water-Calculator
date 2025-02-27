@@ -148,8 +148,46 @@ function App() {
 
   // Go back to the first question
   const goBack = () => {
-    setCurrentQuestionIndex(0); // Reset to start
-  };
+    const confirmRestart = window.confirm("Сигурни ли сте? Това ще изчисти всички отговори и ще започнете отначало.");
+    if (!confirmRestart) return;
+
+    setAnswers([
+      { area: "" }, // 0
+      { people: 1 }, // 1
+      { answer: null }, // 2
+      { answer: null }, // 3
+      { times: 0, period: "" }, // 4
+      { answer: null }, // 5
+      { answer: null }, // 6
+      { answer: null }, // 7
+      { answer: null }, // 8
+      { answer: null }, // 9
+      [ ], // 10
+      [ ], // 11
+      { answer: null }, // 12
+      { times: 0, period: "", value: 1 }, // 13
+      { answer: null }, // 14
+      { answer: null }, // 15
+      { answer: null }, // 16
+      { answer: null }, // 17
+      { months: 1 }, // 18
+      { answer: null }, // 19
+      [ ], // 20
+      { value: 0 }, // 21
+      { home: 50, el: 50 }, // 22
+      { answer: null }, // 23
+      { answer: null }, // 24
+      { answer: null }, // 25
+      { answer: null }, // 26
+      { answer: null }, // 27
+      [{ vegan: 0 }, { vegetarian: 0 }, { omnivore: 0 }], // 28
+      [{ no: 0 }, { once: 0 }, { twice: 0 }, { every: 0 }], // 29
+      { lv: 0 }, // 30
+      { answer: null }, // 31
+      { answer: null }, // 32
+    ]);
+    setCurrentQuestionIndex(0);
+  };  
 
   // Go to the second question
   const goNext = () => {
@@ -395,7 +433,7 @@ function App() {
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Душ"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Имате ли душове с ниска струя?"
+            questionText="Имате ли душове с водоспестяваща приставка?"
           />
           <QuestionPicture
             src={require("./images/all/showerhead.png")}
@@ -488,7 +526,7 @@ function App() {
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Крановете в банята с ниска струя ли са?"
+            questionText="Крановете в банята с водоспестяваща приставка ли са?"
           />
           <QuestionPicture
             src={require("./images/all/sink.png")}
@@ -571,7 +609,7 @@ function App() {
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Вашата кухненска мивка има ли кран с ниска струя?"
+            questionText="Вашата кухненска мивка има ли кран с водоспестяваща приставка?"
           />
           <QuestionPicture
             src={require("./images/all/kitchensink.png")}
