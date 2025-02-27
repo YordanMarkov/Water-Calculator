@@ -277,7 +277,7 @@ function Results({goBack, answers}) {
       'Не': 19
     };
 
-    newTotal += bathroomSinkTimeMap[answers[5].answer] * lowBathroomSinkFlowMap[answers[6].answer];
+    newTotal += bathroomSinkTimeMap[answers[5].answer] * lowBathroomSinkFlowMap[answers[6].answer] / people;
     console.log("Bathroom sink " + newTotal);
 
     // Toilet
@@ -316,7 +316,7 @@ function Results({goBack, answers}) {
       'Не': 19
     };
 
-    newTotal += kitchenSinkTimeMap[answers[8].answer] * lowKitchenSinkFlowMap[answers[9].answer];
+    newTotal += kitchenSinkTimeMap[answers[8].answer] * lowKitchenSinkFlowMap[answers[9].answer] / people;
     console.log("Kitchen sink " + newTotal);
 
     // Dish question
@@ -465,8 +465,8 @@ function Results({goBack, answers}) {
     // total += hose * times * period + carwash * times * period + carwash self * times * period
     const carwashMap = {
       'С маркуч от вкъщи': 350,
-      'Автомивка': 220,
-      'Автомивка на самообслужване': 60
+      'Автомивка': 220, // 220 for virtual
+      'Автомивка на самообслужване': 60 // 60 for virtual
     };
 
     for(let i = 0; i < answers[20].length; i++) {
@@ -474,17 +474,16 @@ function Results({goBack, answers}) {
     }
     console.log("Car " + newTotal);
 
+    let waterRaz = newTotal;
+    setTotal((waterRaz).toFixed(0));
+    setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
+    // waterRaz * (30 / 1000) * 3.695
+
     // Car km
     // total += answer / 0.6 / people / 7 <- to calc the day from a week
     // const ranges = [0, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500];
     newTotal += (answers[21].value + 150) / 0.6 / people / 7;
     console.log("Car km " + newTotal);
-
-
-    let waterRaz = newTotal;
-    setTotal((waterRaz).toFixed(0));
-    setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
-    // waterRaz * (30 / 1000) * 3.695
 
     // El
     // I am putting myself an example for water consumption: 113
@@ -659,7 +658,7 @@ function Results({goBack, answers}) {
         <div className="results-advanced-container">
           {/* Map showing Bulgaria */}
           <img className="results-image-map" src={require("../images/all/blue-map.svg").default} alt="Bulgaria" />
-          <p className="results-text">Средно за България: Няма информация</p>
+          <p className="results-text">Средно за България: <br /> 130 л./ден</p>
         </div>
         <div className="results-advanced-container">
           {/* Text showing the average for the region */}
