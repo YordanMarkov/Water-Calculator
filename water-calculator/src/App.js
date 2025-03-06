@@ -474,7 +474,6 @@ function App() {
               selectedTimes={answers[4].times}
               selectedPeriod={answers[4].period}
               onBathUsageChange={updateBathUsage}
-              goToNext={goToNextQuestion}
               forceNext={() => setCurrentQuestionIndex(currentQuestionIndex + 1)} // <---- ADD THIS
           />
           <Info

@@ -247,11 +247,10 @@ function Results({goBack, answers}) {
       'Ден': 1,
       'Седмица': 1/7,
       'Месец': 1/30,
-      'Година': 1/365
+      'Година': 1/365,
+      '': 0
     }
-    if(answers[4].answer !== 'Не използвам!') {
-      newTotal += (133 * periodMap[answers[4].period] * answers[4].times) / people;
-    }
+    newTotal += (133 * periodMap[answers[4].period] * answers[4].times) / people;
     console.log("Bath " + newTotal);
 
 

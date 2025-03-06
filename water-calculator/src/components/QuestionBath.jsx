@@ -27,15 +27,17 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceN
     };
 
     const handleNoUsageAndNext = () => {
-        handleNoUsage();
-        forceNext();  // <--- Use the new prop here!
-    };  
-    
-    const handleNoUsage = () => {
         setTimes(0);
         setPeriod("");
-        onBathUsageChange(0, "");
-    };
+        onBathUsageChange(0, "");   // Send the zeros directly
+        forceNext();                 // Move to the next question
+    };      
+    
+    // const handleNoUsage = () => {
+    //     setTimes(0);
+    //     setPeriod("");
+    //     onBathUsageChange(0, "");
+    // };
 
     const options = ['Ден', 'Седмица', 'Месец', 'Година'];
 
