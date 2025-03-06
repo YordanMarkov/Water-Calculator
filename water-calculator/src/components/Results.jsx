@@ -233,7 +233,7 @@ function Results({goBack, answers}) {
       'Не': 19
     };
     
-    newTotal += showerTimeMap[answers[2].answer] * lowFlowMap[answers[3].answer];
+    newTotal += showerTimeMap[answers[2].answer] * lowFlowMap[answers[3].answer] / people;
     console.log("Shower " + newTotal);
 
     // Bath, if there the user uses
@@ -293,7 +293,7 @@ function Results({goBack, answers}) {
       'Не': 10
     };
 
-    newTotal += 5 * toiletMap[answers[7].answer];
+    newTotal += 5 * toiletMap[answers[7].answer] / people;
     console.log("Toilet " + newTotal);
 
     // Kitchen sink + low-flow kitchen sink are looked at together
@@ -405,7 +405,7 @@ function Results({goBack, answers}) {
     };
 
     if(answers[13].answer === 'Да') {
-      newTotal += gardenAreaMap[answers[14].value] * answers[14].times * periodMap[answers[14].period] * cactusMap[answers[15].answer];
+      newTotal += gardenAreaMap[answers[14].value] * answers[14].times * periodMap[answers[14].period] * cactusMap[answers[15].answer] / people;
     }
     console.log("Garden " + newTotal);
     
@@ -470,7 +470,7 @@ function Results({goBack, answers}) {
     };
 
     for(let i = 0; i < answers[20].length; i++) {
-      newTotal += carwashMap[answers[20][i].option] * answers[20][i].times * periodMap[answers[20][i].period];
+      newTotal += carwashMap[answers[20][i].option] * answers[20][i].times * periodMap[answers[20][i].period] / people;
     }
     console.log("Car " + newTotal);
 
