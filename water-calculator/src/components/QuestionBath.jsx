@@ -1,47 +1,69 @@
 import './QuestionBath.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange }) {
-    const [times, setTimes] = useState(selectedTimes || 0); // Tracks times
-    const [period, setPeriod] = useState(selectedPeriod || ""); // Tracks period
+function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceNext }) {
+    const [times, setTimes] = useState(selectedTimes || 0);
+    const [period, setPeriod] = useState(selectedPeriod || "");
 
-    // Handles increment/decrement of times
+    // Sync state with parent on revisit
+    useEffect(() => {
+        setTimes(selectedTimes || 0);
+        setPeriod(selectedPeriod || "");
+    }, [selectedTimes, selectedPeriod]);
+
     const handleTimesChange = (operation) => {
         setTimes(prevTimes => {
             const newTimes = operation === "increase" ? prevTimes + 1 : Math.max(0, prevTimes - 1);
-            onBathUsageChange(newTimes, period); // Update parent state
+            onBathUsageChange(newTimes, period);
             return newTimes;
         });
     };
 
-    // Handles period selection change
     const handlePeriodChange = (event) => {
         const newPeriod = event.target.value;
         setPeriod(newPeriod);
-        onBathUsageChange(times, newPeriod); // Update parent state
+        onBathUsageChange(times, newPeriod);
     };
 
-    // Disable style for decrease button
-    const getButtonStyle = (isDisabled) => {
-        return isDisabled ? { filter: 'grayscale(100%)', cursor: 'not-allowed' } : {};
+    const handleNoUsageAndNext = () => {
+        handleNoUsage();
+        forceNext();  // <--- Use the new prop here!
+    };  
+    
+    const handleNoUsage = () => {
+        setTimes(0);
+        setPeriod("");
+        onBathUsageChange(0, "");
     };
 
     const options = ['Ден', 'Седмица', 'Месец', 'Година'];
 
     return (
         <div className="question-bath">
-            <img className="bathtub" src={require("../images/all/bath.png")} alt="bathtub" />
+            <div className="bath-button">
+                <img className="bathtub" src={require("../images/all/bath.png")} alt="bathtub" />
+
+                {/* This button is always shown if times and period are not both set */}
+                {(times === 0 || period === "") && (
+                    <div className="no-usage-wrapper">
+                        <button className="no-usage-button" onClick={handleNoUsageAndNext}>
+                            Не използвам!
+                        </button>
+                    </div>
+                )}
+            </div>
 
             <div className="input-field-bath">
                 <p className="i-use">Ползвам вана</p>
+
                 <div className="plus-minus-menu">
                     <img
                         className="operational-sign"
                         src={require("../images/all/minus.svg").default}
                         alt="minus"
                         onClick={() => handleTimesChange("decrease")}
-                        style={times === 0 ? getButtonStyle(true) : {}}
+                        style={times === 0 ? { filter: 'grayscale(100%)', cursor: 'not-allowed' } : {}}
                     />
                     <p className="times-bath">{times}</p>
                     <img
@@ -51,9 +73,9 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange }) {
                         onClick={() => handleTimesChange("increase")}
                     />
                 </div>
+
                 <p className="times-for">{times === 1 ? "път" : "пъти"} на</p>
 
-                {/* Period selection */}
                 <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
                     <InputLabel
                         sx={{
@@ -81,20 +103,10 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange }) {
                             fontFamily: 'Comfortaa, sans-serif',
                             textAlign: 'center',
                             transition: '0.3s opacity',
-                            '.MuiSelect-icon': {
-                                color: 'white',
-                            },
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                border: 'none',
-                            },
-                            '&:hover': {
-                                opacity: 0.8,
-                                transition: '0.3s opacity',
-                            },
-                            '& .MuiSelect-select': {
-                                paddingLeft: 0,
-                                paddingRight: 0,
-                            },
+                            '.MuiSelect-icon': { color: 'white' },
+                            '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                            '&:hover': { opacity: 0.8, transition: '0.3s opacity' },
+                            '& .MuiSelect-select': { paddingLeft: 0, paddingRight: 0 },
                         }}
                     >
                         {options.map((option, index) => (

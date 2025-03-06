@@ -471,9 +471,11 @@ function App() {
             questionText="Колко често използвате вана?"
           />
           <QuestionBath
-            selectedTimes={answers[4].times} // Pass stored value
-            selectedPeriod={answers[4].period} // Pass stored value
-            onBathUsageChange={updateBathUsage} // Handle changes
+              selectedTimes={answers[4].times}
+              selectedPeriod={answers[4].period}
+              onBathUsageChange={updateBathUsage}
+              goToNext={goToNextQuestion}
+              forceNext={() => setCurrentQuestionIndex(currentQuestionIndex + 1)} // <---- ADD THIS
           />
           <Info
             color="blue"
@@ -490,10 +492,8 @@ function App() {
       ),
       answerProps: {
         isTherePrev: true,
-        isThereNext: answers[4].times > 0 && answers[4].period !== "", // Show "Next" only if BOTH conditions are met
-        buttonTitles: (answers[4].times === 0 || answers[4].period === "") ? ["Не използвам!"] : [], // Show "Не използвам!" only if one of them is missing
-        answerIndex: 4, // Save to answers[4]
-      },
+        isThereNext: answers[4].times > 0 && answers[4].period !== "", // Still conditionally enable Next
+    }
     },
     // Question 5
     {
