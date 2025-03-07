@@ -456,7 +456,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Някои'],
+        buttonTitles: ['Не', 'Някои', 'Да'],
         answerIndex: 3, // Save to answers[3]
       },
     },
@@ -548,7 +548,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Някои'],
+        buttonTitles: ['Не', 'Някои', 'Да'],
         answerIndex: 6, // Save to answers[6]
       },
     },
@@ -573,7 +573,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Някои'],
+        buttonTitles: ['Не', 'Някои', 'Да'],
         answerIndex: 7, // Save to answers[7]
       },
     },
@@ -630,7 +630,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         answerIndex: 9, // Save to answers[9]
       },
     },
@@ -747,7 +747,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         answerIndex: 12, // Save to answers[12]
       },
     },
@@ -772,7 +772,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         isGreen: true,
         answerIndex: 13, // Save to answers[13]
       },
@@ -829,7 +829,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         isGreen: true,
         answerIndex: 15, // Save to answers[15]
       },
@@ -865,7 +865,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         isGreen: true,
         answerIndex: 16, // Save to answers[16]
       },
@@ -892,7 +892,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         isGreen: true,
         answerIndex: 17, // Save to answers[17]
       },
@@ -948,7 +948,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не'],
+        buttonTitles: ['Не', 'Да'],
         isGreen: true,
         answerIndex: 19, // Save to answers[19]
       },
@@ -1138,7 +1138,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Понякога'],
+        buttonTitles: ['Не', 'Понякога', 'Да'],
         isPurple: true,
         answerIndex: 24, // Save to answers[24]
       },
@@ -1165,7 +1165,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Понякога'],
+        buttonTitles: ['Не', 'Понякога', 'Да'],
         isPurple: true,
         answerIndex: 25, // Save to answers[25]
       },
@@ -1192,7 +1192,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Понякога'],
+        buttonTitles: ['Не', 'Понякога', 'Да'],
         isPurple: true,
         answerIndex: 26, // Save to answers[26]
       },
@@ -1219,7 +1219,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Да', 'Не', 'Понякога'],
+        buttonTitles: ['Не', 'Понякога', 'Да'],
         isPurple: true,
         answerIndex: 27, // Save to answers[27]
       },
