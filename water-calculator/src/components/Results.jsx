@@ -113,7 +113,7 @@ function Results({goBack, answers}) {
   const filteredTips = [];
 
   // 1. Bath usage tip – if the user uses the bath.
-  if (answers[4].answer !== "Не използвам!") {
+  if (answers[4].times !== 0) {
     filteredTips.push(tips[0]);
   }
 
@@ -474,8 +474,13 @@ function Results({goBack, answers}) {
     console.log("Car " + newTotal);
 
     let waterRaz = newTotal;
-    setTotal((waterRaz).toFixed(0));
-    setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
+    if (people === 1) {
+      setTotal((waterRaz/3).toFixed(0));
+      setSum((waterRaz/3 * (30 / 1000) * 3.695).toFixed(2));
+    } else {
+      setTotal((waterRaz).toFixed(0));
+      setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
+    }
     // waterRaz * (30 / 1000) * 3.695
 
     // Car km
