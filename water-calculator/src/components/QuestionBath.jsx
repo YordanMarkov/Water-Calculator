@@ -1,12 +1,11 @@
 import './QuestionBath.css';
 import { useState, useEffect } from 'react';
-import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { Select, MenuItem, FormControl } from "@mui/material";
 
 function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceNext }) {
     const [times, setTimes] = useState(selectedTimes || 0);
     const [period, setPeriod] = useState(selectedPeriod || "");
 
-    // Sync state with parent on revisit
     useEffect(() => {
         setTimes(selectedTimes || 0);
         setPeriod(selectedPeriod || "");
@@ -29,15 +28,9 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceN
     const handleNoUsageAndNext = () => {
         setTimes(0);
         setPeriod("");
-        onBathUsageChange(0, "");   // Send the zeros directly
-        forceNext();                 // Move to the next question
-    };      
-    
-    // const handleNoUsage = () => {
-    //     setTimes(0);
-    //     setPeriod("");
-    //     onBathUsageChange(0, "");
-    // };
+        onBathUsageChange(0, "");
+        forceNext();
+    };
 
     const options = ['Ден', 'Седмица', 'Месец', 'Година'];
 
@@ -46,7 +39,6 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceN
             <div className="bath-button">
                 <img className="bathtub" src={require("../images/all/bath.png")} alt="bathtub" />
 
-                {/* This button is always shown if times and period are not both set */}
                 {(times === 0 || period === "") && (
                     <div className="no-usage-wrapper">
                         <button className="no-usage-button" onClick={handleNoUsageAndNext}>
@@ -78,41 +70,77 @@ function QuestionBath({ selectedTimes, selectedPeriod, onBathUsageChange, forceN
 
                 <p className="times-for">{times === 1 ? "път" : "пъти"} на</p>
 
-                <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
-                    <InputLabel
-                        sx={{
-                            fontSize: 'calc(var(--scale) * 25)',
-                            fontFamily: 'Comfortaa, sans-serif',
-                            color: 'white',
-                            textAlign: 'center',
-                            width: 'calc(var(--scale) * 424)',
-                            opacity: period ? 0 : 1,
-                            transition: 'opacity 0.3s ease',
-                        }}
-                        shrink={!!period}
-                    >
-                        Изберете...
-                    </InputLabel>
+                <FormControl
+                    sx={{
+                        width: 'calc(var(--scale) * 224)',
+                        marginTop: `calc(var(--scale) * 8)`,
+                    }}
+                >
                     <Select
-                        value={period}
+                        displayEmpty
+                        value={period || ""}
                         onChange={handlePeriodChange}
                         sx={{
                             backgroundColor: '#1C274C',
-                            width: 'calc(var(--scale) * 224)',
+                            height: 'calc(var(--scale) * 60)',
                             borderRadius: 'calc(var(--scale) * 30)',
                             color: 'white',
                             fontSize: 'calc(var(--scale) * 25)',
                             fontFamily: 'Comfortaa, sans-serif',
                             textAlign: 'center',
-                            transition: '0.3s opacity',
-                            '.MuiSelect-icon': { color: 'white' },
-                            '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-                            '&:hover': { opacity: 0.8, transition: '0.3s opacity' },
-                            '& .MuiSelect-select': { paddingLeft: 0, paddingRight: 0 },
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            paddingLeft: `calc(var(--scale) * 16)`,
+                            paddingRight: `calc(var(--scale) * 16)`,
+
+                            '.MuiSelect-icon': {
+                                color: 'white',
+                                right: `calc(var(--scale) * 16)`,
+                            },
+
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                border: 'none',
+                            },
+
+                            '&:hover': {
+                                opacity: 0.8,
+                                transition: 'opacity 0.3s',
+                            },
+
+                            '& .MuiSelect-select': {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: 0,
+                            },
                         }}
                     >
+                        <MenuItem
+                            disabled
+                            value=""
+                            sx={{
+                                fontSize: 'calc(var(--scale) * 25)',
+                                fontFamily: 'Comfortaa, sans-serif',
+                                textAlign: 'center',
+                                opacity: 0.5,
+                            }}
+                        >
+                            Изберете...
+                        </MenuItem>
+
                         {options.map((option, index) => (
-                            <MenuItem key={index} value={option}>{option}</MenuItem>
+                            <MenuItem
+                                key={index}
+                                value={option}
+                                sx={{
+                                    fontSize: 'calc(var(--scale) * 25)',
+                                    fontFamily: 'Comfortaa, sans-serif',
+                                    textAlign: 'center',
+                                }}
+                            >
+                                {option}
+                            </MenuItem>
                         ))}
                     </Select>
                 </FormControl>

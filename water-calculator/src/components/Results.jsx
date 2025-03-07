@@ -478,8 +478,8 @@ function Results({goBack, answers}) {
       setTotal((waterRaz/3).toFixed(0));
       setSum((waterRaz/3 * (30 / 1000) * 3.695).toFixed(2));
     } else if(people > 3) {
-      setTotal((waterRaz*people).toFixed(0));
-      setSum((waterRaz*people * (30 / 1000) * 3.695).toFixed(2));
+      setTotal((waterRaz*people*1.10).toFixed(0));
+      setSum((waterRaz*people*1.10 * (30 / 1000) * 3.695).toFixed(2));
     } else {
       setTotal((waterRaz).toFixed(0));
       setSum((waterRaz * (30 / 1000) * 3.695).toFixed(2));
