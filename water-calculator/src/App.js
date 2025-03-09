@@ -807,6 +807,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: answers[14].times > 0 && answers[14].period !== "" && answers[14].value > 0, // Next button only if both conditions are met
+        isGreen: true,
       },
     },
     // Question 15
