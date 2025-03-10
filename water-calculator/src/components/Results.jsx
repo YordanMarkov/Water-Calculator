@@ -477,7 +477,7 @@ function Results({goBack, answers}) {
     if (people === 1) {
       setTotal((waterRaz/3).toFixed(0));
       setSum((waterRaz/3 * (30 / 1000) * 3.695).toFixed(2));
-    } else if(people > 3) {
+    } else if(people >= 3) {
       setTotal((waterRaz*people*1.10).toFixed(0));
       setSum((waterRaz*people*1.10 * (30 / 1000) * 3.695).toFixed(2));
     } else {
@@ -664,12 +664,12 @@ function Results({goBack, answers}) {
         </div>
         <div className="results-advanced-container">
           {/* Map showing Bulgaria */}
-          <img className="results-image-map" src={require("../images/all/blue-map.svg").default} alt="Bulgaria" />
-          <p className="results-text">Средно за България: <br /> 130 л./ден</p>
+          <img className="results-image-map" src={require("../images/all/one-bg.svg").default} alt="Bulgaria" />
+          <p className="results-text">Средно за един потребител: <br /> 130 л./ден</p>
         </div>
         <div className="results-advanced-container">
           {/* Text showing the average for the region */}
-          <p className="results-text">Средно за областта: Няма информация</p>
+          <p className="results-text">Средно за областта: <br /> N/A л./ден</p>
           {/* Image showing Sofia area */}
           <img className="results-image-area" src={require("../images/all/sofia-city.svg").default} alt="Sofia" />
         </div>

@@ -78,8 +78,10 @@
 .advanced-results {
     position: absolute;
     display: flex;
+    justify-content: space-between; /* Adds space between items */
+    gap: calc(var(--scale) * 50); /* Adjust the gap between items */
     top: calc(var(--scale) * 550);
-    left: calc(var(--scale) * 420);
+    left: calc(var(--scale) * 400);
     align-items: center;
 }
 
@@ -87,7 +89,7 @@
     width: calc(var(--scale) * 407);
     height: calc(var(--scale) * 80);
     color: black;
-    font-size: calc(var(--scale) * 30);
+    font-size: calc(var(--scale) * 25);
     text-align: center;
 }
 
