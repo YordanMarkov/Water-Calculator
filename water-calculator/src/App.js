@@ -1450,7 +1450,9 @@ function App() {
     <div>
 
       {/* Logo */}
-      <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
+      {(currentQuestionIndex !== 0) && (
+        <img className="logo" src={require("./images/all/logo.svg").default} alt="logo" />
+      )}
       
       {/* Show sidebar if not on the last question (which is the result page) */}
       {(currentQuestionIndex !== 34 && currentQuestionIndex !== 0) && (

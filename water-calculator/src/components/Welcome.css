@@ -2,13 +2,14 @@
 
 .welcome-container {
     position: absolute;
+    top: calc(var(--scale) * 240);
 }
 
 .welcome-background {
     position: absolute;
-    width: calc(var(--scale) * 1920);
+    width: calc(var(--scale) * 1930);
     top: calc(var(--scale) * -16);
-    left: calc(var(--scale) * -8);
+    left: calc(var(--scale) * -16);
 }
 
 .voden-calc {
@@ -18,11 +19,32 @@
     left: calc(var(--scale) * 700);
 }
 
+@keyframes float {
+    0% {
+        transform: translateY(calc(var(--scale) * 0));
+    }
+    50% {
+        transform: translateY(calc(var(--scale) * 50)) translateX(calc(var(--scale) * 50));
+    }
+    100% {
+        transform: translateY(calc(var(--scale) * 0));
+    }
+}
+
+.home-logo {
+    position: absolute;
+    width: calc(var(--scale) * 300);
+    top: calc(var(--scale) * 200);
+    left: calc(var(--scale) * 920);
+    z-index: 1;
+    animation: float 30s ease-out infinite; /* Floating effect */
+}
+
 .welcome-start {
     position: absolute;
     width: calc(var(--scale) * 177);
     height: calc(var(--scale) * 71);
-    top: calc(var(--scale) * 340);
+    top: calc(var(--scale) * 490);
     left: calc(var(--scale) * 842);
     border-radius: calc(var(--scale) * 30);
     background-color: #ffc464b7;
