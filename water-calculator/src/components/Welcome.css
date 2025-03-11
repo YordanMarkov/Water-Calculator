@@ -8,14 +8,14 @@
 .welcome-background {
     position: absolute;
     width: calc(var(--scale) * 1930);
-    top: calc(var(--scale) * -16);
+    top: calc(var(--scale) * 40);
     left: calc(var(--scale) * -16);
 }
 
 .voden-calc {
     position: absolute;
     width: calc(var(--scale) * 460);
-    top: calc(var(--scale) * 40);
+    top: calc(var(--scale) * 75);
     left: calc(var(--scale) * 700);
 }
 
