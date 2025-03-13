@@ -456,7 +456,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Не', 'Някои', 'Да'],
+        buttonTitles: ['Не', 'Да'],
         answerIndex: 3, // Save to answers[3]
       },
     },
@@ -548,7 +548,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Не', 'Някои', 'Да'],
+        buttonTitles: ['Не', 'Да'],
         answerIndex: 6, // Save to answers[6]
       },
     },
@@ -573,7 +573,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Не', 'Някои', 'Да'],
+        buttonTitles: ['Не', 'Да'],
         answerIndex: 7, // Save to answers[7]
       },
     },
@@ -642,14 +642,14 @@ function App() {
             iconPath={require("./images/icons/dish.svg").default}
             titleText="Съдове"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Как си миете съдовете?"
+            questionText="Как измивате съдовете си?"
           />
           <QuestionAdvancedSelection
             options={[
               "Обикновена съдомиялна",
               "Енерго/Водоефективна съдомиялна",
               "На ръка ",
-              "Хвърлям ги / Не ям вкъщи",
+              "Изхвърлям ги / Не ям вкъщи",
             ]}
             questionCount={4}
             bigImageSrc={require("./images/all/dish.png")}
@@ -962,7 +962,7 @@ function App() {
             iconPath={require("./images/icons/car.svg").default}
             titleText="Автопочистване"
             lineColor={require("./images/lines/green.svg").default}
-            questionText="Как си миете автомобила?"
+            questionText="Как миете автомобила си?"
             isGreen={true}
           />
           <QuestionAdvancedSelection
@@ -1098,7 +1098,7 @@ function App() {
             iconPath={require("./images/icons/bag.svg").default}
             titleText="Пазаруване"
             lineColor={require("./images/lines/purple.svg").default}
-            questionText="Колко пазарувате?"
+            questionText="Колко често пазарувате?"
             isPurple={true}
           />
           <QuestionPicture
@@ -1356,11 +1356,11 @@ function App() {
             iconPath={require("./images/icons/chat.svg").default}
             titleText="Още малко..."
             lineColor={require("./images/lines/purple.svg").default}
-            questionText="От какво се интересувате най-много?"
+            questionText="Каква информация искате да получите?"
             isPurple={true}
           />
           <AnswerVerticalSection 
-            questions={['Как да пестя вода', 'Да помогна на природата', 'Пестене на пари', 'Да си разбера водния отпечатък']} 
+            questions={['Пестене на вода', 'Да помогна на природата', 'Пестене на пари', 'Да си разбера водния отпечатък']} 
             goToNext={(answerIndex, answerText) => handleOptionClick(31, answerText)} // Pass the answer text (button title)
           />
         </>
@@ -1380,11 +1380,11 @@ function App() {
             iconPath={require("./images/icons/chat.svg").default}
             titleText="Последен въпрос!"
             lineColor={require("./images/lines/purple.svg").default}
-            questionText="За какво най-много искате да научите?"
+            questionText="За коя ВиК система искате да получите информация?"
             isPurple={true}
           />
           <AnswerVerticalSection 
-            questions={['За вътрешната ВиК система', 'За външната ВиК система', 'За виртуалната ВиК система']} 
+            questions={['За сградната ВиК инсталация', 'За външната ВиК мрежа', 'За виртуалната ВиК система']} 
             goToNext={(answerIndex, answerText) => handleOptionClick(32, answerText)} // Pass the answer text (button title)
           />
         </>
