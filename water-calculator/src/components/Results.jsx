@@ -191,9 +191,9 @@ function Results({goBack, answers}) {
     filteredTips.push(tips[10]);
   }
 
-  // 12. If the user loves to shop ("Харесвам" or "До припадък!").
+  // 12. If the user loves to shop ("В излишък" or "До припадък!").
   if (
-    answers[23].answer === "Харесвам" ||
+    answers[23].answer === "В излишък" ||
     answers[23].answer === "До припадък!"
   ) {
     filteredTips.push(tips[11]);

@@ -1093,7 +1093,7 @@ function App() {
             iconPath={require("./images/icons/bag.svg").default}
             titleText="Пазаруване"
             lineColor={require("./images/lines/purple.svg").default}
-            questionText="Колко често пазарувате?"
+            questionText="Как пазарувате?"
             isPurple={true}
           />
           <QuestionPicture
