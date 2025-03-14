@@ -499,7 +499,7 @@ function App() {
             iconPath={require("./images/icons/bath.svg").default}
             titleText="Кранове в банята"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Колко дълго оставяте крановете в банята да текат (на ден)?"
+            questionText="Колко дълго оставяте крановете в банята да текат (средно на ден)?"
           />
           <QuestionPicture
             src={require("./images/all/runningsink.png")}
@@ -578,7 +578,7 @@ function App() {
             iconPath={require("./images/icons/sink.svg").default}
             titleText="Кухненски кран"
             lineColor={require("./images/lines/blue.svg").default}
-            questionText="Колко дълго оставяте крановете в кухнята да текат (на ден)?"
+            questionText="Колко дълго оставяте крановете в кухнята да текат (средно на ден)?"
           />
           <QuestionPicture
             src={require("./images/all/runningkitchensink.png")}
@@ -751,7 +751,7 @@ function App() {
             iconPath={require("./images/icons/sprinkler.svg").default}
             titleText="Морава и градина"
             lineColor={require("./images/lines/green.svg").default}
-            questionText="Поливате ли си вашата морава или градина?"
+            questionText="Поливате ли вашата градина с чешмяна вода?"
             isGreen={true}
           />
           <QuestionPicture
@@ -1107,7 +1107,7 @@ function App() {
       answerProps: {
         isTherePrev: true,
         isThereNext: false,
-        buttonTitles: ['Само нужното', 'Харесвам', 'До припадък!'],
+        buttonTitles: ['Само нужното', 'В излишък', 'До припадък!'],
         isPurple: true,
         answerIndex: 23, // Save to answers[23]
       },
@@ -1319,7 +1319,7 @@ function App() {
             iconPath={require("./images/icons/bone.svg").default}
             titleText="Храна за животни"
             lineColor={require("./images/lines/purple.svg").default}
-            questionText="Какъв бюджет заделяте, за да закупите храна за вашите домашни любимци?"
+            questionText="Какъв бюджет заделяте, за да закупите храна за вашите домашни любимци (на месец)?"
             isPurple={true}
           />
           <QuestionPet updatePetValue={updatePetValue} />
