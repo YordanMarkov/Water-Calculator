@@ -10,9 +10,9 @@ _"The creation of a pilot project for a "Water Calculator", adapted to Bulgarian
 
 ## Sections
 The app has 3 form sections:
-- [Indoor Water](https://git.fhict.nl/I524517/passion-project/-/tree/Indoor-Water) - _How does the water consumption work inside the household?_
-- [Outdoor Water](https://git.fhict.nl/I524517/passion-project/-/tree/Outdoor-Water) - _How does the water consumption work outside (gardening, pool...) the household?_
-- [Virtual Water](https://git.fhict.nl/I524517/passion-project/-/tree/Virtual-Water) - _There are almost invisible ways to waste a lot of water, is the user aware of them?_
+- [Indoor Water]() - _How does the water consumption work inside the household?_
+- [Outdoor Water]() - _How does the water consumption work outside (gardening, pool...) the household?_
+- [Virtual Water]() - _There are almost invisible ways to waste a lot of water, is the user aware of them?_
 
 It ends with a Results page with useful tips.
 
@@ -22,13 +22,13 @@ To open this project on your device you need to follow several instructions:
 2. [Download Visual Studio Code](https://code.visualstudio.com/download) on your device.
 3. Copy the link of **this** repository.
 4. Open a terminal on your device and navigate through the folders using **cd** prompt.
-5. When you navigate yourself into the desired directory, run the command **git clone** + paste the link. Must look like: **git clone https://git.fhict.nl/I524517/passion-project**.
+5. When you navigate yourself into the desired directory, run the command **git clone** + paste the link. Must look like: **git clone https://github.com/YordanMarkov/Water-Calculator/tree/Logic**.
 6. When successfully cloned, right click on the whole folder and selected option **Open with > Visual Studio Code**.
 7. You may need to download React and load the external libraries. To do that in the local terminal inside the folder **water-calculator** type **npm i**. To run it, type **npm start**.
 8. You have now downloaded the project on your device. _Enjoy_!
 
 ## ⚠️ Important note ⚠️
-This project is not yet finalized! For the current updates, please check the [Logic branch](https://git.fhict.nl/I524517/passion-project/-/tree/Logic).
+This project is not yet finalized! For the current updates, please check the [Logic branch](https://github.com/YordanMarkov/Water-Calculator/tree/Logic).
 
 ## Yordan Markov
 
